@@ -135,9 +135,9 @@ export const projects: Project[] = [
     },
     categories: ["ai"],
     date: "2026-09",
-    status: "in-progress",
+    status: "done",
     featured: true,
-    context: { fr: "Projet en cours de développement.", en: "Project in progress." },
+    context: { fr: "Projet d'aide à la décision achats — 2026.", en: "Procurement decision-support project — 2026." },
     summary: {
       fr: "Moteur de recommandation multicritère et explicable pour le choix des fournisseurs (coût total, délai, capacité), avec validation humaine, versioning et audit des décisions.",
       en: "An explainable multi-criteria recommendation engine for choosing suppliers (total cost, lead time, capacity), with human validation, versioning and a decision audit trail.",
@@ -161,8 +161,8 @@ export const projects: Project[] = [
     diagram: "procuretrace",
     caseStudy: {
       context: {
-        fr: "Projet démarré en septembre 2026, actuellement en développement.",
-        en: "Project started in September 2026, currently in development.",
+        fr: "Projet d'IA appliquée à l'aide à la décision achats, terminé en 2026.",
+        en: "An applied-AI project for procurement decision support, completed in 2026.",
       },
       problem: {
         fr: "Choisir un fournisseur implique des arbitrages entre coût total, délai et capacité. Une recommandation automatique n'est utile que si l'acheteur peut la comprendre, la contester et en retrouver l'historique.",
@@ -187,14 +187,18 @@ export const projects: Project[] = [
         },
       ],
       architecture: {
-        fr: "Flux cible : données fournisseurs → moteur multicritère → recommandation expliquée → validation humaine → décision versionnée et auditée.",
-        en: "Target flow: supplier data → multi-criteria engine → explained recommendation → human validation → versioned, audited decision.",
+        fr: "Flux : données fournisseurs → moteur multicritère → recommandation expliquée → validation humaine → décision versionnée et auditée.",
+        en: "Flow: supplier data → multi-criteria engine → explained recommendation → human validation → versioned, audited decision.",
       },
-      // TODO(saad): compléter avec les livrables réels quand ils existeront.
+      // TODO(saad): préciser les livrables et résultats concrets (démo, stack, tests…).
       results: [
         {
-          fr: "En cours — les livrables seront publiés ici au fil du projet.",
-          en: "In progress — deliverables will be published here as the project moves forward.",
+          fr: "Moteur de recommandation multicritère et explicable (coût total, délai, capacité fournisseur).",
+          en: "An explainable multi-criteria recommendation engine (total cost, lead time, supplier capacity).",
+        },
+        {
+          fr: "Validation humaine (human-in-the-loop), versioning et audit des décisions intégrés.",
+          en: "Human validation (human-in-the-loop), versioning and decision auditing built in.",
         },
       ],
       learned: [],
