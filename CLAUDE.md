@@ -47,7 +47,7 @@ Portfolio personnel (objectif : décrocher un stage PFE Data / BI / IA). One-pag
 - Formulaire : sans `RESEND_API_KEY`, la Server Action renvoie `fallback` et le client ouvre un `mailto:` prérempli.
 
 ## À compléter par Saad (voir les `TODO(saad)`)
-- Durée exacte du PFE (début confirmé : fin février 2027)
+- Durée exacte du PFE (début confirmé : à partir de février 2027)
 - Ouverture à l'international (`profile.mobility`)
 - Liens `credentialUrl` des certifications (intitulés confirmés = ceux du CV)
 - Stack et dépôt de ProcureTrace AI ; dépôts des projets BI et SmartHousing
