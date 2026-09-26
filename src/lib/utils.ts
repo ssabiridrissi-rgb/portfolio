@@ -27,6 +27,19 @@ export function formatPeriod(start: string, end: string | null, locale: Locale):
   return `${formatMonth(start, locale)} — ${endLabel}`;
 }
 
+const DEFAULT_SITE_URL = "https://saad-sabir-idrissi.vercel.app";
+
+/**
+ * Public origin of the site. Tolerates a NEXT_PUBLIC_SITE_URL typed without the protocol
+ * ("my-site.vercel.app") and falls back to the default instead of crashing the build.
+ */
 export function siteUrl(): string {
-  return (process.env.NEXT_PUBLIC_SITE_URL ?? "https://saad-sabir-idrissi.vercel.app").replace(/\/$/, "");
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!raw) return DEFAULT_SITE_URL;
+  const withProtocol = /^https?:\/\//i.test(raw) ? raw : `https://${raw}`;
+  try {
+    return new URL(withProtocol).origin;
+  } catch {
+    return DEFAULT_SITE_URL;
+  }
 }
