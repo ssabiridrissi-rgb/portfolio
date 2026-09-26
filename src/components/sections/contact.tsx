@@ -17,7 +17,7 @@ function Row({ icon, label, children, action }: { icon: ReactNode; label: string
       </span>
       <div className="min-w-0 flex-1">
         <p className="font-mono text-[0.68rem] tracking-widest text-subtle uppercase">{label}</p>
-        <div className="truncate text-[0.95rem] text-fg">{children}</div>
+        <div className="text-[0.95rem] break-words text-fg">{children}</div>
       </div>
       {action}
     </li>
@@ -39,8 +39,8 @@ export async function Contact() {
         <Reveal delay={0.08} className="flex flex-col rounded-3xl border border-border bg-surface p-6 shadow-card sm:p-8">
           <h3 className="font-mono text-[0.7rem] tracking-widest text-subtle uppercase">{t("direct")}</h3>
           <ul className="mt-2 divide-y divide-border">
-            <Row icon={<Mail />} label="Email" action={<CopyEmail />}>
-              <a href={`mailto:${profile.email}`} className={link}>
+            <Row icon={<Mail />} label="Email">
+              <a href={`mailto:${profile.email}`} className={`${link} break-all`}>
                 {profile.email}
               </a>
             </Row>
@@ -68,6 +68,7 @@ export async function Contact() {
               {profile.location[locale]} · {profile.mobility[locale]}
             </Row>
           </ul>
+          <CopyEmail />
           <a
             href="/api/vcard"
             download

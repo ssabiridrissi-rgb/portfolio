@@ -32,8 +32,8 @@ export async function Hero() {
       <div aria-hidden className="absolute inset-0 -z-20">
         <HeroCanvas />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,transparent_20%,var(--bg)_75%)]" />
-        <div className="absolute -top-40 left-1/4 h-[520px] w-[520px] rounded-full bg-[radial-gradient(closest-side,var(--glow-1),transparent)] blur-3xl" />
-        <div className="absolute top-1/3 right-0 h-[420px] w-[420px] rounded-full bg-[radial-gradient(closest-side,var(--glow-3),transparent)] blur-3xl" />
+        <div className="absolute -top-40 left-1/4 h-[520px] w-[520px] rounded-full bg-[radial-gradient(closest-side,var(--glow-1),transparent)]" />
+        <div className="absolute top-1/3 right-0 h-[420px] w-[420px] rounded-full bg-[radial-gradient(closest-side,var(--glow-3),transparent)]" />
       </div>
 
       <div className="container-page grid items-center gap-14 lg:grid-cols-[1.2fr_0.8fr] lg:gap-10">
@@ -49,14 +49,14 @@ export async function Hero() {
             </a>
           </div>
 
-          <div className="fade-up" style={{ "--d": "60ms" } as React.CSSProperties}>
+          <div>
             <p className="mt-8 font-mono text-sm text-muted">{t("hello")}</p>
             <h1 id="hero-title" className="mt-3 text-display text-balance">
               Saad <span className="text-gradient">Sabir Idrissi</span>
             </h1>
           </div>
 
-          <div className="fade-up" style={{ "--d": "120ms" } as React.CSSProperties}>
+          <div>
             <p className="mt-6 max-w-xl text-lg font-medium text-fg/90 sm:text-xl">{profile.title[locale]}</p>
             <p className="mt-3 flex min-h-[1.75rem] items-center gap-2 font-mono text-base text-muted sm:text-lg">
               <span aria-hidden className="text-accent-fg">&gt;</span>
@@ -64,7 +64,7 @@ export async function Hero() {
             </p>
           </div>
 
-          <div className="fade-up" style={{ "--d": "180ms" } as React.CSSProperties}>
+          <div>
             <p className="mt-7 max-w-xl text-lead text-pretty text-muted">
               {profile.valueProposition[locale]}
             </p>

@@ -105,7 +105,11 @@ export function HeroCanvas() {
       }
     };
 
+    let tick = 0;
     const step = () => {
+      frame = requestAnimationFrame(step);
+      // ~30 fps on small screens: half the work on phones, still smooth for slow-moving nodes.
+      if (width < 768 && tick++ % 2) return;
       for (const n of nodes) {
         if (mouse.active) {
           const dx = mouse.x - n.x;
@@ -132,7 +136,6 @@ export function HeroCanvas() {
         n.y = Math.max(0, Math.min(height, n.y));
       }
       draw();
-      frame = requestAnimationFrame(step);
     };
 
     const start = () => {
@@ -158,7 +161,16 @@ export function HeroCanvas() {
 
     readColors();
     resize();
-    start();
+    // Start animating only once the browser is idle, so the canvas never delays the first render.
+    // Draw a static frame now; animate on the first interaction (or after 4 s), keeping the load path free.
+    const kick = () => {
+      window.clearTimeout(timer);
+      for (const type of KICK_EVENTS) window.removeEventListener(type, kick);
+      start();
+    };
+    const KICK_EVENTS = ["pointermove", "scroll", "touchstart", "keydown"] as const;
+    for (const type of KICK_EVENTS) window.addEventListener(type, kick, { once: true, passive: true });
+    const timer = window.setTimeout(kick, 4000);
 
     const resizeObserver = new ResizeObserver(() => resize());
     resizeObserver.observe(canvas);
@@ -179,6 +191,8 @@ export function HeroCanvas() {
     document.addEventListener("visibilitychange", onVisibility);
 
     return () => {
+      window.clearTimeout(timer);
+      for (const type of KICK_EVENTS) window.removeEventListener(type, kick);
       stop();
       resizeObserver.disconnect();
       intersection.disconnect();

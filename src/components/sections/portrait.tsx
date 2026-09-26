@@ -45,7 +45,7 @@ export function Portrait({ alt, children }: { alt: string; children?: React.Reac
         style={tilt ? { rotateX, rotateY, transformStyle: "preserve-3d" } : undefined}
         className="relative mx-auto w-full max-w-[400px]"
       >
-        <div aria-hidden className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-[radial-gradient(closest-side,var(--glow-1),transparent)] blur-2xl" />
+        <div aria-hidden className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-[radial-gradient(closest-side,var(--glow-1),transparent)]" />
         <div className="gradient-frame rounded-[2rem] p-[1.5px] shadow-[0_30px_80px_-30px_var(--glow-1)]">
           <div className="relative overflow-hidden rounded-[calc(2rem-1.5px)] bg-surface">
             <Image

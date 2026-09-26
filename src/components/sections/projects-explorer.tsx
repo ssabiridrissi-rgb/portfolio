@@ -3,7 +3,7 @@
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
-import { EASE } from "@/components/ui/reveal";
+import { EASE } from "@/lib/motion";
 import { featuredProjects, otherProjects, projectCategories } from "@/content/projects";
 import { cn } from "@/lib/utils";
 import type { ProjectCategory } from "@/types/content";

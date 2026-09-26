@@ -15,12 +15,12 @@ type SectionProps = {
 
 export function Section({ id, eyebrow, title, subtitle, children, className, glow, headerAside }: SectionProps) {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className={cn("relative py-20 sm:py-28", className)}>
+    <section id={id} aria-labelledby={`${id}-title`} className={cn("cv-auto relative py-20 sm:py-28", className)}>
       {glow ? (
         <div
           aria-hidden
           className={cn(
-            "pointer-events-none absolute top-10 -z-10 h-[420px] w-[520px] max-w-full rounded-full blur-3xl",
+            "pointer-events-none absolute top-10 -z-10 h-[420px] w-[520px] max-w-full rounded-full",
             glow === "left" && "left-0 bg-[radial-gradient(closest-side,var(--glow-1),transparent)]",
             glow === "right" && "right-0 bg-[radial-gradient(closest-side,var(--glow-3),transparent)]",
             glow === "center" && "left-1/2 -translate-x-1/2 bg-[radial-gradient(closest-side,var(--glow-2),transparent)]",

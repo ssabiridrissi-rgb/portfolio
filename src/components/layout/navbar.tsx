@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { Button } from "@/components/ui/button";
-import { EASE } from "@/components/ui/reveal";
+import { EASE } from "@/lib/motion";
 import { profile } from "@/content/profile";
 import { Link, usePathname } from "@/i18n/navigation";
 import { emit, UI_EVENTS } from "@/lib/events";

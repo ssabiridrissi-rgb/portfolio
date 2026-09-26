@@ -1,4 +1,4 @@
-import { brandIcons } from "@/lib/brand-icons";
+import { BRAND_SPRITE, brandIcons } from "@/lib/brand-icons";
 import { cn } from "@/lib/utils";
 import type { Logo } from "@/types/content";
 
@@ -10,7 +10,7 @@ type Props = {
   title?: string;
 };
 
-/** Brand icon from simple-icons, or a monogram tile when no icon exists. */
+/** Brand icon from simple-icons (external sprite), or a monogram tile when no icon exists. */
 export function BrandLogo({ logo, className, colored = false, title }: Props) {
   const a11y = title ? { role: "img" as const, "aria-label": title } : { "aria-hidden": true as const };
 
@@ -18,7 +18,7 @@ export function BrandLogo({ logo, className, colored = false, title }: Props) {
     const icon = brandIcons[logo.icon];
     return (
       <svg viewBox="0 0 24 24" className={cn("size-4 shrink-0", className)} fill={colored ? icon.hex : "currentColor"} {...a11y}>
-        <path d={icon.path} />
+        <use href={`${BRAND_SPRITE}#${logo.icon}`} />
       </svg>
     );
   }

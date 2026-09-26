@@ -5,11 +5,12 @@ import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
-import { CommandPalette } from "@/components/command/command-palette";
+import { CommandPaletteLoader } from "@/components/command/command-palette-loader";
 import { CustomCursor } from "@/components/layout/custom-cursor";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { Providers } from "@/components/providers/providers";
+import { RevealObserver } from "@/components/providers/reveal-observer";
 import { routing } from "@/i18n/routing";
 import { fontVariables } from "@/lib/fonts";
 import { buildMetadata } from "@/lib/seo";
@@ -50,10 +51,11 @@ export default async function LocaleLayout({ children, params }: Props) {
 
   return (
     <html lang={locale} className={`dark ${fontVariables}`} suppressHydrationWarning>
+      <head>
+        {/* Scroll-reveal styles only apply when JS runs, so content is never hidden without it. */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+      </head>
       <body id="top" className="grain min-h-dvh antialiased">
-        <noscript>
-          <style>{"[data-reveal]{opacity:1!important;transform:none!important}"}</style>
-        </noscript>
         <a
           href="#main"
           className="sr-only z-[100] rounded-full bg-gradient-button px-4 py-2 text-sm font-medium text-accent-contrast focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
@@ -67,12 +69,18 @@ export default async function LocaleLayout({ children, params }: Props) {
               {children}
             </main>
             <Footer />
-            <CommandPalette />
+            <CommandPaletteLoader />
             <CustomCursor />
+            <RevealObserver />
           </Providers>
         </NextIntlClientProvider>
-        <Analytics />
-        <SpeedInsights />
+        {/* Analytics scripts only exist on Vercel deployments. */}
+        {process.env.VERCEL ? (
+          <>
+            <Analytics />
+            <SpeedInsights />
+          </>
+        ) : null}
       </body>
     </html>
   );

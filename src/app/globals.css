@@ -199,6 +199,12 @@
     scroll-margin-top: 5.5rem;
   }
 
+  /* Skip style/layout/paint work for sections until they approach the viewport. */
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 1000px;
+  }
+
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
@@ -313,6 +319,31 @@
   }
 }
 
+/* Scroll reveal — `.js` is set by an inline script, `.is-visible` by <RevealObserver /> */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(var(--reveal-y, 16px));
+  transition:
+    opacity 0.55s var(--ease-out-expo),
+    transform 0.55s var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+[data-reveal-group] > :nth-child(2) { --reveal-delay: 60ms; }
+[data-reveal-group] > :nth-child(3) { --reveal-delay: 120ms; }
+[data-reveal-group] > :nth-child(4) { --reveal-delay: 180ms; }
+[data-reveal-group] > :nth-child(5) { --reveal-delay: 240ms; }
+[data-reveal-group] > :nth-child(n + 6) { --reveal-delay: 300ms; }
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Entrance animation without JS (hero) */
 .fade-up {
   animation: fade-up 0.8s var(--ease-out-expo) both;
@@ -396,6 +427,10 @@
     --accent-fg: #1d4ed8;
     --success: #047857;
     --success-bg: #ecfdf5;
+  }
+  .js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
   }
   .grain::after,
   .no-print {

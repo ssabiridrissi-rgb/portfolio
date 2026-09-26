@@ -28,7 +28,7 @@ import { Terminal } from "./terminal";
 
 const EASTER_EGG = "saad";
 
-export function CommandPalette() {
+export function CommandPalette({ initial }: { initial: "palette" | "terminal" }) {
   const t = useTranslations("palette");
   const nav = useTranslations("nav");
   const locale = useLocale();
@@ -36,8 +36,8 @@ export function CommandPalette() {
   const pathname = usePathname();
   const { resolvedTheme, setTheme } = useTheme();
   const { switchLocale } = useSwitchLocale();
-  const [open, setOpen] = useState(false);
-  const [terminalOpen, setTerminalOpen] = useState(false);
+  const [open, setOpen] = useState(initial === "palette");
+  const [terminalOpen, setTerminalOpen] = useState(initial === "terminal");
   const [search, setSearch] = useState("");
   const [toast, setToast] = useState<string | null>(null);
   const [cursorOn, setCursorOn] = useState(false);

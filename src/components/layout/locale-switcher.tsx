@@ -1,7 +1,6 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useParams } from "next/navigation";
 import { useTransition } from "react";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
@@ -10,7 +9,6 @@ export function useSwitchLocale() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
-  const params = useParams();
   const [isPending, startTransition] = useTransition();
   const next = locale === "fr" ? "en" : "fr";
 
@@ -22,7 +20,7 @@ export function useSwitchLocale() {
     });
   };
 
-  return { locale, next, switchLocale, isPending, params };
+  return { locale, next, switchLocale, isPending };
 }
 
 export function LocaleSwitcher({ className }: { className?: string }) {

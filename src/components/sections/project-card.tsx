@@ -96,6 +96,7 @@ export function FeaturedProjectCard({ project, large = false }: { project: Proje
             id={project.diagram}
             locale={locale}
             label={t("diagram", { project: project.title[locale] })}
+            vertical={large}
             className="relative w-full transition-transform duration-700 ease-out-expo group-hover:translate-y-[-2px]"
           />
         </div>

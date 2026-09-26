@@ -23,7 +23,7 @@ export function CopyEmail() {
     <button
       type="button"
       onClick={copy}
-      className="relative z-10 inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border-strong px-3 py-1.5 text-xs text-muted transition-colors hover:border-accent/60 hover:text-fg"
+      className="mt-4 inline-flex items-center justify-center gap-2 rounded-full border border-border-strong px-4 py-2.5 text-sm text-muted transition-colors hover:border-accent/60 hover:text-fg"
       aria-label={copied ? t("copied") : t("copy")}
     >
       {copied ? <Check className="size-3.5 text-success" aria-hidden /> : <Copy className="size-3.5" aria-hidden />}

@@ -36,7 +36,7 @@ export async function GET(request: Request) {
             width: 700,
             height: 700,
             borderRadius: 9999,
-            background: "radial-gradient(closest-side, rgba(59,130,246,0.35), transparent)",
+            background: "radial-gradient(closest-side, rgba(59,130,246,0.35), rgba(59,130,246,0))",
           }}
         />
         <div style={{ display: "flex", flexDirection: "column", flex: 1, justifyContent: "space-between", paddingRight: 48 }}>

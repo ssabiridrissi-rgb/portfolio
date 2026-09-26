@@ -109,7 +109,7 @@ function Flow({ diagram, locale, uid }: { diagram: FlowDiagram; locale: Locale; 
       <Defs uid={uid} />
       {diagram.groups?.map((group, gi) => {
         const members = group.nodes.map((id) => boxes.get(id)).filter((b): b is Box => Boolean(b));
-        const inset = gi === 0 ? 12 : 26;
+        const inset = gi === 0 ? 12 : 34;
         const x = Math.min(...members.map((b) => b.x)) - inset;
         const y = Math.min(...members.map((b) => b.y)) - inset - 14;
         const w = Math.max(...members.map((b) => b.x + NODE_W)) + inset - x;
@@ -214,7 +214,19 @@ const DOT: Record<Tone, string> = {
  * Card-sized preview: flow diagrams become a readable HTML pipeline (SVG text would be too small),
  * star schemas keep their SVG.
  */
-export function DiagramPreview({ id, locale, label, className }: { id: DiagramId; locale: Locale; label: string; className?: string }) {
+export function DiagramPreview({
+  id,
+  locale,
+  label,
+  className,
+  vertical = false,
+}: {
+  id: DiagramId;
+  locale: Locale;
+  label: string;
+  className?: string;
+  vertical?: boolean;
+}) {
   const diagram = diagrams[id];
   if (diagram.kind === "star") return <ArchitectureDiagram id={id} locale={locale} label={label} className={className} />;
 
@@ -229,11 +241,13 @@ export function DiagramPreview({ id, locale, label, className }: { id: DiagramId
           ))}
         </figcaption>
       ) : null}
-      <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-2.5">
+      <ol className={cn("flex", vertical ? "flex-col items-center gap-1" : "flex-wrap items-center gap-x-1.5 gap-y-2.5")}>
         {diagram.columns.map((column, ci) => (
-          <li key={ci} className="flex items-center gap-1.5">
-            {ci > 0 ? <ArrowRight aria-hidden className="size-3.5 shrink-0 text-accent-2" /> : null}
-            <div className="flex flex-col gap-1.5">
+          <li key={ci} className={cn("flex items-center", vertical ? "flex-col gap-1" : "gap-1.5")}>
+            {ci > 0 ? (
+              <ArrowRight aria-hidden className={cn("size-3.5 shrink-0 text-accent-2", vertical && "rotate-90")} />
+            ) : null}
+            <div className={cn("flex gap-1.5", vertical ? "flex-row flex-wrap justify-center" : "flex-col")}>
               {column.map((node) => (
                 <div key={node.id} className="rounded-xl border border-border-strong bg-surface-2/90 px-2.5 py-1.5 shadow-sm backdrop-blur">
                   <p className="flex items-center gap-1.5 text-[0.8rem] leading-tight font-semibold text-fg">

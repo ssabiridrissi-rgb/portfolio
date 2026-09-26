@@ -1,57 +1,31 @@
-"use client";
+import type { ComponentProps, CSSProperties } from "react";
 
-import { motion, type HTMLMotionProps } from "motion/react";
-
-export const EASE = [0.22, 1, 0.36, 1] as const;
-
-type RevealProps = HTMLMotionProps<"div"> & {
+type RevealProps = ComponentProps<"div"> & {
+  /** Delay in seconds. */
   delay?: number;
   /** Vertical offset in px before reveal. */
   y?: number;
 };
 
-/** Fade + translate on scroll. Reduced motion is handled globally by <MotionConfig reducedMotion="user">. */
-export function Reveal({ delay = 0, y = 16, children, ...props }: RevealProps) {
+/**
+ * Fade + translate on scroll. Pure CSS (`[data-reveal]` in globals.css) toggled by a single
+ * IntersectionObserver (<RevealObserver />) — no per-element JS, visible without JS and in reduced motion.
+ */
+export function Reveal({ delay = 0, y = 16, style, ...props }: RevealProps) {
   return (
-    <motion.div
-      data-reveal
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "0px 0px -8% 0px" }}
-      transition={{ duration: 0.55, ease: EASE, delay }}
+    <div
+      data-reveal=""
+      style={{ ...style, "--reveal-delay": `${Math.round(delay * 1000)}ms`, "--reveal-y": `${y}px` } as CSSProperties}
       {...props}
-    >
-      {children}
-    </motion.div>
+    />
   );
 }
 
-/** Staggered container: wrap each child in <RevealItem>. */
-export function RevealGroup({ children, stagger = 0.06, ...props }: HTMLMotionProps<"div"> & { stagger?: number }) {
-  return (
-    <motion.div
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "0px 0px -8% 0px" }}
-      variants={{ hidden: {}, show: { transition: { staggerChildren: stagger } } }}
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
+/** Container whose <RevealItem> children appear with a 60 ms stagger. */
+export function RevealGroup(props: ComponentProps<"div">) {
+  return <div data-reveal-group="" {...props} />;
 }
 
-export function RevealItem({ children, ...props }: HTMLMotionProps<"div">) {
-  return (
-    <motion.div
-      data-reveal
-      variants={{
-        hidden: { opacity: 0, y: 16 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
-      }}
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
+export function RevealItem(props: ComponentProps<"div">) {
+  return <div data-reveal="" {...props} />;
 }

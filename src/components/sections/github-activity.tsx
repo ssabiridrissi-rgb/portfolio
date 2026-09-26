@@ -43,7 +43,7 @@ async function Activity() {
 
   return (
     <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
-      <Reveal className="flex flex-col gap-4">
+      <Reveal className="flex min-w-0 flex-col gap-4">
         <div className="rounded-3xl border border-border bg-surface p-6 shadow-card sm:p-7">
           <div className="flex items-center gap-4">
             <span className="grid size-14 place-items-center rounded-2xl border border-border bg-surface-2">
@@ -90,7 +90,7 @@ async function Activity() {
         ) : null}
       </Reveal>
 
-      <Reveal delay={0.08} className="rounded-3xl border border-border bg-surface p-6 shadow-card sm:p-7">
+      <Reveal delay={0.08} className="min-w-0 rounded-3xl border border-border bg-surface p-6 shadow-card sm:p-7">
         <h3 className="font-mono text-[0.7rem] tracking-widest text-subtle uppercase">{t("recent")}</h3>
         <ul className="mt-4 divide-y divide-border">
           {data.recent.map((repo) => (
