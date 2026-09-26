@@ -1,0 +1,263 @@
+{
+  "meta": {
+    "title": "Saad Sabir Idrissi — Élève Ingénieur Data & IA | Portfolio",
+    "description": "Portfolio de Saad Sabir Idrissi, élève ingénieur en informatique spécialisé Data & IA (double diplôme Maroc / Chine). Data warehouses, Power BI, Spotfire, IA appliquée et cloud AWS. Disponible pour un stage PFE.",
+    "caseStudyTitle": "{project} — Étude de cas | Saad Sabir Idrissi",
+    "recruiterTitle": "Résumé recruteur | Saad Sabir Idrissi",
+    "recruiterDescription": "Le profil de Saad Sabir Idrissi sur une page : disponibilité, compétences clés, projets et contact."
+  },
+  "nav": {
+    "about": "À propos",
+    "experience": "Expérience",
+    "projects": "Projets",
+    "skills": "Compétences",
+    "github": "GitHub",
+    "education": "Formation",
+    "certifications": "Certifications",
+    "contact": "Contact",
+    "home": "Accueil",
+    "skip": "Aller au contenu",
+    "menu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "recruiter": "Mode recruteur",
+    "recruiterShort": "Recruteur",
+    "search": "Rechercher ou naviguer",
+    "mainNav": "Navigation principale",
+    "progress": "Progression de lecture"
+  },
+  "theme": {
+    "toggle": "Changer de thème",
+    "dark": "Thème sombre",
+    "light": "Thème clair"
+  },
+  "locale": {
+    "label": "Langue",
+    "switch": "Switch to English",
+    "short": "EN"
+  },
+  "cv": {
+    "download": "Télécharger mon CV",
+    "menu": "Choisir une version du CV"
+  },
+  "hero": {
+    "hello": "Bonjour, je suis",
+    "rolePrefix": "Profil :",
+    "viewProjects": "Voir mes projets",
+    "scroll": "Défiler",
+    "portraitAlt": "Portrait de Saad Sabir Idrissi en costume bleu marine lors d'un forum de recrutement",
+    "socials": "Réseaux et contact"
+  },
+  "stats": {
+    "label": "Chiffres clés",
+    "experiences": "expériences en entreprise",
+    "projects": "projets réalisés",
+    "certifications": "certifications",
+    "languages": "langues",
+    "degrees": "diplômes (Maroc / Chine)"
+  },
+  "about": {
+    "eyebrow": "À propos",
+    "title": "La donnée, de la source à la décision",
+    "bringTitle": "Ce que j'apporte",
+    "lookingTitle": "Ce que je recherche",
+    "type": "Type",
+    "domains": "Domaines",
+    "period": "Période",
+    "duration": "Durée",
+    "mobility": "Mobilité",
+    "tldrTitle": "En bref, pour les recruteurs",
+    "qualities": "Qualités"
+  },
+  "experience": {
+    "eyebrow": "Parcours",
+    "title": "Expérience professionnelle",
+    "subtitle": "De l'analyse commerciale chez Renault aux dashboards Power BI : la donnée au service des équipes métier.",
+    "data": "Data",
+    "kind": {
+      "work": "Emploi",
+      "apprenticeship": "Alternance",
+      "internship": "Stage",
+      "observation": "Stage d'observation"
+    }
+  },
+  "projects": {
+    "eyebrow": "Réalisations",
+    "title": "Projets sélectionnés",
+    "subtitle": "Entrepôts de données, IA appliquée et infrastructure cloud : chaque projet est présenté tel qu'il est, avec mon rôle réel.",
+    "filterLabel": "Filtrer les projets par catégorie",
+    "others": "Autres projets",
+    "caseStudy": "Étude de cas",
+    "github": "GitHub",
+    "viewCode": "Voir le code",
+    "codeSoon": "Code bientôt disponible",
+    "done": "Terminé",
+    "inProgress": "En cours",
+    "exploreGithub": "Explorer tout mon GitHub",
+    "team": "Équipe de {count}",
+    "empty": "Aucun projet dans cette catégorie pour l'instant.",
+    "count": "{count, plural, one {# projet} other {# projets}}",
+    "diagram": "Schéma d'architecture : {project}"
+  },
+  "caseStudy": {
+    "back": "Tous les projets",
+    "context": "Contexte",
+    "problem": "Problème",
+    "approach": "Approche",
+    "architecture": "Architecture",
+    "results": "Résultats & livrables",
+    "stack": "Stack",
+    "learned": "Ce que j'ai appris",
+    "links": "Liens",
+    "role": "Mon rôle",
+    "previous": "Projet précédent",
+    "next": "Projet suivant",
+    "date": "Date",
+    "status": "Statut",
+    "category": "Catégorie"
+  },
+  "skills": {
+    "eyebrow": "Compétences",
+    "title": "Un graphe de compétences, pas une liste",
+    "subtitle": "Survolez ou sélectionnez une compétence pour voir où je l'ai réellement utilisée.",
+    "usedAt": "Utilisé chez {companies}",
+    "usedIn": "{count, plural, one {Utilisé dans # projet} other {Utilisé dans # projets}}",
+    "certified": "Certifié · {issuers}",
+    "learning": "Formation académique",
+    "usageTitle": "Projets, expériences et certifications",
+    "hint": "Astuce : survolez un élément à droite pour voir ses compétences.",
+    "qualities": "Qualités",
+    "reset": "Tout afficher"
+  },
+  "github": {
+    "eyebrow": "Open source",
+    "title": "Activité GitHub",
+    "subtitle": "Données publiques de mon profil, mises à jour automatiquement toutes les heures.",
+    "repos": "dépôts publics",
+    "languages": "Langages principaux (par dépôt)",
+    "recent": "Dépôts récemment mis à jour",
+    "viewProfile": "Voir le profil GitHub",
+    "fallback": "Données hors ligne : l'API GitHub n'a pas répondu, voici le dernier instantané connu.",
+    "updated": "Mis à jour {date}"
+  },
+  "education": {
+    "eyebrow": "Formation",
+    "title": "Un parcours ingénieur international",
+    "subtitle": "Une formation d'ingénieur au Maroc, complétée par une double diplomation en Big Data en Chine.",
+    "ongoing": "En cours",
+    "doubleDegree": "Double diplôme Maroc / Chine"
+  },
+  "certifications": {
+    "eyebrow": "Certifications & langues",
+    "title": "Certifications",
+    "verify": "Vérifier",
+    "competition": "Compétition",
+    "certification": "Certification",
+    "languagesTitle": "Langues"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Travaillons ensemble",
+    "subtitle": "Un stage PFE en Data, BI ou IA ? Une question sur un projet ? Je réponds rapidement.",
+    "name": "Nom complet",
+    "email": "Email professionnel",
+    "company": "Entreprise",
+    "optional": "optionnel",
+    "type": "Objet",
+    "types": {
+      "pfe": "Stage PFE",
+      "job": "Emploi",
+      "other": "Autre"
+    },
+    "message": "Message",
+    "messagePlaceholder": "Présentez le poste ou le projet en quelques lignes…",
+    "submit": "Envoyer le message",
+    "sending": "Envoi en cours…",
+    "success": "Merci ! Votre message a bien été envoyé. Je vous réponds sous 48 h.",
+    "error": "L'envoi a échoué. Réessayez, ou écrivez-moi directement par email.",
+    "fallback": "Votre messagerie va s'ouvrir avec le message prérempli.",
+    "fallbackLink": "Ouvrir ma messagerie",
+    "honeypot": "Laissez ce champ vide",
+    "errors": {
+      "name": "Indiquez votre nom (2 caractères minimum).",
+      "email": "Indiquez une adresse email valide.",
+      "company": "120 caractères maximum.",
+      "message": "Votre message doit contenir au moins 20 caractères.",
+      "messageMax": "Votre message est trop long (5000 caractères maximum)."
+    },
+    "direct": "Ou directement",
+    "copy": "Copier l'email",
+    "copied": "Email copié !",
+    "phone": "Téléphone",
+    "whatsapp": "WhatsApp",
+    "location": "Localisation",
+    "addContact": "Ajouter à mes contacts",
+    "addContactHint": "Télécharge une fiche vCard (.vcf)",
+    "mailSubject": "[{type}] Contact depuis le portfolio — {name}"
+  },
+  "footer": {
+    "tagline": "Élève ingénieur Data & IA — à la recherche d'un stage PFE.",
+    "quickLinks": "Liens rapides",
+    "elsewhere": "Ailleurs",
+    "built": "Fait avec Next.js, déployé sur Vercel.",
+    "rights": "© {year} Saad Sabir Idrissi",
+    "backToTop": "Retour en haut"
+  },
+  "palette": {
+    "title": "Palette de commandes",
+    "placeholder": "Tapez une commande ou recherchez…",
+    "empty": "Aucun résultat.",
+    "navigation": "Navigation",
+    "projects": "Projets",
+    "actions": "Actions",
+    "links": "Liens",
+    "preferences": "Préférences",
+    "copyEmail": "Copier l'email",
+    "emailCopied": "Email copié dans le presse-papiers",
+    "downloadCv": "Télécharger : {label}",
+    "toggleTheme": "Changer de thème (clair / sombre)",
+    "switchLanguage": "Switch to English",
+    "openGithub": "Ouvrir GitHub",
+    "openLinkedin": "Ouvrir LinkedIn",
+    "recruiter": "Ouvrir le mode recruteur",
+    "cursorOn": "Activer le curseur personnalisé",
+    "cursorOff": "Désactiver le curseur personnalisé",
+    "tip": "Astuce : tapez « saad »…"
+  },
+  "terminal": {
+    "title": "saad@portfolio: ~",
+    "close": "Fermer le terminal",
+    "input": "Commande du terminal",
+    "welcome": "Bienvenue ! Tapez « help » pour la liste des commandes.",
+    "help": "Commandes disponibles : help, whoami, skills, projects, contact, cv, clear, exit",
+    "notFound": "commande introuvable : {cmd}. Tapez « help ».",
+    "cv": "Téléchargement du CV Data & BI…",
+    "projectsIntro": "Projets mis en avant :",
+    "contactIntro": "Me contacter :"
+  },
+  "recruiter": {
+    "eyebrow": "Mode recruteur",
+    "title": "Mon profil en une page",
+    "print": "Imprimer / PDF",
+    "back": "Retour au portfolio",
+    "profile": "Profil",
+    "availability": "Disponibilité",
+    "topSkills": "Compétences clés",
+    "topProjects": "Projets phares",
+    "experience": "Expériences data",
+    "contact": "Contact",
+    "education": "Formation",
+    "languages": "Langues",
+    "full": "Portfolio complet"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "subtitle": "La page que vous cherchez n'existe pas, ou a été déplacée.",
+    "rows": "Query returned 0 rows",
+    "home": "Retour à l'accueil",
+    "projects": "Voir les projets"
+  },
+  "common": {
+    "newTab": "(nouvel onglet)",
+    "present": "aujourd'hui"
+  }
+}

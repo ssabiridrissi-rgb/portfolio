@@ -1,0 +1,263 @@
+{
+  "meta": {
+    "title": "Saad Sabir Idrissi — Data & AI Engineering Student | Portfolio",
+    "description": "Portfolio of Saad Sabir Idrissi, a computer engineering student specialising in Data & AI (double degree Morocco / China). Data warehouses, Power BI, Spotfire, applied AI and AWS cloud. Available for a final-year internship.",
+    "caseStudyTitle": "{project} — Case study | Saad Sabir Idrissi",
+    "recruiterTitle": "Recruiter summary | Saad Sabir Idrissi",
+    "recruiterDescription": "Saad Sabir Idrissi's profile on a single page: availability, key skills, projects and contact details."
+  },
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "github": "GitHub",
+    "education": "Education",
+    "certifications": "Certifications",
+    "contact": "Contact",
+    "home": "Home",
+    "skip": "Skip to content",
+    "menu": "Open menu",
+    "closeMenu": "Close menu",
+    "recruiter": "Recruiter mode",
+    "recruiterShort": "Recruiter",
+    "search": "Search or jump to",
+    "mainNav": "Main navigation",
+    "progress": "Reading progress"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "dark": "Dark theme",
+    "light": "Light theme"
+  },
+  "locale": {
+    "label": "Language",
+    "switch": "Passer en français",
+    "short": "FR"
+  },
+  "cv": {
+    "download": "Download my résumé",
+    "menu": "Pick a résumé version"
+  },
+  "hero": {
+    "hello": "Hi, I'm",
+    "rolePrefix": "Role:",
+    "viewProjects": "See my projects",
+    "scroll": "Scroll",
+    "portraitAlt": "Portrait of Saad Sabir Idrissi in a navy suit at a recruitment fair",
+    "socials": "Social links and contact"
+  },
+  "stats": {
+    "label": "Key figures",
+    "experiences": "roles in industry",
+    "projects": "projects built",
+    "certifications": "certifications",
+    "languages": "languages",
+    "degrees": "degrees (Morocco / China)"
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "Data, from source to decision",
+    "bringTitle": "What I bring",
+    "lookingTitle": "What I'm looking for",
+    "type": "Type",
+    "domains": "Fields",
+    "period": "When",
+    "duration": "Length",
+    "mobility": "Location",
+    "tldrTitle": "TL;DR for recruiters",
+    "qualities": "Soft skills"
+  },
+  "experience": {
+    "eyebrow": "Career",
+    "title": "Work experience",
+    "subtitle": "From sales analytics at Renault to Power BI dashboards: data that helps business teams decide.",
+    "data": "Data",
+    "kind": {
+      "work": "Job",
+      "apprenticeship": "Work-study",
+      "internship": "Internship",
+      "observation": "Observation internship"
+    }
+  },
+  "projects": {
+    "eyebrow": "Work",
+    "title": "Selected projects",
+    "subtitle": "Data warehouses, applied AI and cloud infrastructure. Each project is shown as it really is, with the part I actually played.",
+    "filterLabel": "Filter projects by category",
+    "others": "More projects",
+    "caseStudy": "Case study",
+    "github": "GitHub",
+    "viewCode": "View code",
+    "codeSoon": "Code coming soon",
+    "done": "Completed",
+    "inProgress": "In progress",
+    "exploreGithub": "Explore my GitHub",
+    "team": "Team of {count}",
+    "empty": "No projects in this category yet.",
+    "count": "{count, plural, one {# project} other {# projects}}",
+    "diagram": "Architecture diagram: {project}"
+  },
+  "caseStudy": {
+    "back": "All projects",
+    "context": "Context",
+    "problem": "Problem",
+    "approach": "Approach",
+    "architecture": "Architecture",
+    "results": "Results & deliverables",
+    "stack": "Stack",
+    "learned": "What I learned",
+    "links": "Links",
+    "role": "My role",
+    "previous": "Previous project",
+    "next": "Next project",
+    "date": "Date",
+    "status": "Status",
+    "category": "Category"
+  },
+  "skills": {
+    "eyebrow": "Skills",
+    "title": "A skills graph, not a list",
+    "subtitle": "Hover over or select a skill to see where I've actually used it.",
+    "usedAt": "Used at {companies}",
+    "usedIn": "{count, plural, one {Used in # project} other {Used in # projects}}",
+    "certified": "Certified · {issuers}",
+    "learning": "Studied at university",
+    "usageTitle": "Projects, roles and certifications",
+    "hint": "Tip: hover over an item on the right to see the skills behind it.",
+    "qualities": "Soft skills",
+    "reset": "Show all"
+  },
+  "github": {
+    "eyebrow": "Open source",
+    "title": "GitHub activity",
+    "subtitle": "Public data from my profile, refreshed automatically every hour.",
+    "repos": "public repositories",
+    "languages": "Top languages (by repository)",
+    "recent": "Recently updated repositories",
+    "viewProfile": "View GitHub profile",
+    "fallback": "Offline data: the GitHub API didn't respond, so this is the last known snapshot.",
+    "updated": "Updated {date}"
+  },
+  "education": {
+    "eyebrow": "Education",
+    "title": "An international engineering track",
+    "subtitle": "An engineering degree in Morocco, plus a double degree in Big Data in China.",
+    "ongoing": "In progress",
+    "doubleDegree": "Double degree Morocco / China"
+  },
+  "certifications": {
+    "eyebrow": "Certifications & languages",
+    "title": "Certifications",
+    "verify": "Verify",
+    "competition": "Competition",
+    "certification": "Certification",
+    "languagesTitle": "Languages"
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's work together",
+    "subtitle": "Have a final-year internship in Data, BI or AI? A question about a project? I reply quickly.",
+    "name": "Full name",
+    "email": "Work email",
+    "company": "Company",
+    "optional": "optional",
+    "type": "Subject",
+    "types": {
+      "pfe": "Final-year internship",
+      "job": "Job",
+      "other": "Other"
+    },
+    "message": "Message",
+    "messagePlaceholder": "Tell me about the role or project in a few lines…",
+    "submit": "Send message",
+    "sending": "Sending…",
+    "success": "Thanks! Your message was sent. I'll get back to you within 48 hours.",
+    "error": "Something went wrong. Please try again, or email me directly.",
+    "fallback": "Your email app will open with the message ready to send.",
+    "fallbackLink": "Open my email app",
+    "honeypot": "Leave this field empty",
+    "errors": {
+      "name": "Please enter your name (at least 2 characters).",
+      "email": "Please enter a valid email address.",
+      "company": "120 characters max.",
+      "message": "Your message needs at least 20 characters.",
+      "messageMax": "Your message is too long (5,000 characters max)."
+    },
+    "direct": "Or reach me directly",
+    "copy": "Copy email",
+    "copied": "Email copied!",
+    "phone": "Phone",
+    "whatsapp": "WhatsApp",
+    "location": "Location",
+    "addContact": "Add to my contacts",
+    "addContactHint": "Downloads a vCard (.vcf)",
+    "mailSubject": "[{type}] Portfolio contact — {name}"
+  },
+  "footer": {
+    "tagline": "Data & AI engineering student looking for a final-year internship.",
+    "quickLinks": "Quick links",
+    "elsewhere": "Elsewhere",
+    "built": "Built with Next.js, deployed on Vercel.",
+    "rights": "© {year} Saad Sabir Idrissi",
+    "backToTop": "Back to top"
+  },
+  "palette": {
+    "title": "Command palette",
+    "placeholder": "Type a command or search…",
+    "empty": "No results.",
+    "navigation": "Navigation",
+    "projects": "Projects",
+    "actions": "Actions",
+    "links": "Links",
+    "preferences": "Preferences",
+    "copyEmail": "Copy email address",
+    "emailCopied": "Email copied to clipboard",
+    "downloadCv": "Download: {label}",
+    "toggleTheme": "Toggle theme (light / dark)",
+    "switchLanguage": "Passer en français",
+    "openGithub": "Open GitHub",
+    "openLinkedin": "Open LinkedIn",
+    "recruiter": "Open recruiter mode",
+    "cursorOn": "Turn on custom cursor",
+    "cursorOff": "Turn off custom cursor",
+    "tip": "Tip: try typing “saad”…"
+  },
+  "terminal": {
+    "title": "saad@portfolio: ~",
+    "close": "Close terminal",
+    "input": "Terminal command",
+    "welcome": "Welcome! Type “help” to see the available commands.",
+    "help": "Available commands: help, whoami, skills, projects, contact, cv, clear, exit",
+    "notFound": "command not found: {cmd}. Type “help”.",
+    "cv": "Downloading the Data & BI résumé…",
+    "projectsIntro": "Featured projects:",
+    "contactIntro": "Get in touch:"
+  },
+  "recruiter": {
+    "eyebrow": "Recruiter mode",
+    "title": "My profile on one page",
+    "print": "Print / PDF",
+    "back": "Back to portfolio",
+    "profile": "Profile",
+    "availability": "Availability",
+    "topSkills": "Key skills",
+    "topProjects": "Key projects",
+    "experience": "Data experience",
+    "contact": "Contact",
+    "education": "Education",
+    "languages": "Languages",
+    "full": "Full portfolio"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "subtitle": "The page you're looking for doesn't exist or has moved.",
+    "rows": "Query returned 0 rows",
+    "home": "Back to home",
+    "projects": "See projects"
+  },
+  "common": {
+    "newTab": "(opens in a new tab)",
+    "present": "present"
+  }
+}
