@@ -469,7 +469,7 @@ export const projects: Project[] = [
     title: { fr: "SmartHousing Clustering", en: "SmartHousing Clustering" },
     subtitle: { fr: "Segmentation d'appartements par K-means", en: "Apartment segmentation with K-means" },
     categories: ["ai", "data-bi"],
-    date: "2025-11",
+    date: "2025-12",
     status: "done",
     featured: false,
     context: { fr: "Projet d'analyse de données immobilières.", en: "Real-estate data analysis project." },
