@@ -51,6 +51,9 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale} className={`dark ${fontVariables}`} suppressHydrationWarning>
       <body id="top" className="grain min-h-dvh antialiased">
+        <noscript>
+          <style>{"[data-reveal]{opacity:1!important;transform:none!important}"}</style>
+        </noscript>
         <a
           href="#main"
           className="sr-only z-[100] rounded-full bg-gradient-button px-4 py-2 text-sm font-medium text-accent-contrast focus:not-sr-only focus:fixed focus:top-3 focus:left-3"

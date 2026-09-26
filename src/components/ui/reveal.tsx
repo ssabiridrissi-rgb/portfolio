@@ -14,6 +14,7 @@ type RevealProps = HTMLMotionProps<"div"> & {
 export function Reveal({ delay = 0, y = 16, children, ...props }: RevealProps) {
   return (
     <motion.div
+      data-reveal
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "0px 0px -8% 0px" }}
@@ -43,6 +44,7 @@ export function RevealGroup({ children, stagger = 0.06, ...props }: HTMLMotionPr
 export function RevealItem({ children, ...props }: HTMLMotionProps<"div">) {
   return (
     <motion.div
+      data-reveal
       variants={{
         hidden: { opacity: 0, y: 16 },
         show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },

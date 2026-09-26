@@ -1,10 +1,10 @@
+import type React from "react";
 import { ArrowDown, ArrowRight, Mail } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { CvMenu } from "@/components/layout/cv-menu";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "@/components/ui/external-link";
-import { Reveal } from "@/components/ui/reveal";
 import { profile } from "@/content/profile";
 import { HeroCanvas } from "./hero-canvas";
 import { Portrait } from "./portrait";
@@ -38,7 +38,7 @@ export async function Hero() {
 
       <div className="container-page grid items-center gap-14 lg:grid-cols-[1.2fr_0.8fr] lg:gap-10">
         <div>
-          <Reveal>
+          <div className="fade-up" style={{ "--d": "0ms" } as React.CSSProperties}>
             <a
               href="#contact"
               className="group inline-flex items-center gap-2.5 rounded-full border border-success/30 bg-success-bg py-1.5 pr-3.5 pl-3 text-xs font-medium text-success transition-colors hover:border-success/60 sm:text-sm"
@@ -47,30 +47,30 @@ export async function Hero() {
               {profile.availability.headline[locale]}
               <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden />
             </a>
-          </Reveal>
+          </div>
 
-          <Reveal delay={0.06}>
+          <div className="fade-up" style={{ "--d": "60ms" } as React.CSSProperties}>
             <p className="mt-8 font-mono text-sm text-muted">{t("hello")}</p>
             <h1 id="hero-title" className="mt-3 text-display text-balance">
               Saad <span className="text-gradient">Sabir Idrissi</span>
             </h1>
-          </Reveal>
+          </div>
 
-          <Reveal delay={0.12}>
+          <div className="fade-up" style={{ "--d": "120ms" } as React.CSSProperties}>
             <p className="mt-6 max-w-xl text-lg font-medium text-fg/90 sm:text-xl">{profile.title[locale]}</p>
             <p className="mt-3 flex min-h-[1.75rem] items-center gap-2 font-mono text-base text-muted sm:text-lg">
               <span aria-hidden className="text-accent-fg">&gt;</span>
               <Typewriter phrases={profile.roles.map((r) => r[locale])} label={t("rolePrefix")} />
             </p>
-          </Reveal>
+          </div>
 
-          <Reveal delay={0.18}>
+          <div className="fade-up" style={{ "--d": "180ms" } as React.CSSProperties}>
             <p className="mt-7 max-w-xl text-lead text-pretty text-muted">
               {profile.valueProposition[locale]}
             </p>
-          </Reveal>
+          </div>
 
-          <Reveal delay={0.24} className="mt-9 flex flex-wrap items-center gap-3">
+          <div className="fade-up mt-9 flex flex-wrap items-center gap-3" style={{ "--d": "240ms" } as React.CSSProperties}>
             <Button asChild size="lg">
               <a href="#projects">
                 {t("viewProjects")}
@@ -78,9 +78,9 @@ export async function Hero() {
               </a>
             </Button>
             <CvMenu />
-          </Reveal>
+          </div>
 
-          <Reveal delay={0.3}>
+          <div className="fade-up" style={{ "--d": "300ms" } as React.CSSProperties}>
             <ul aria-label={t("socials")} className="mt-9 flex items-center gap-2">
               {socials.map((s) => (
                 <li key={s.label}>
@@ -95,10 +95,10 @@ export async function Hero() {
                 </li>
               ))}
             </ul>
-          </Reveal>
+          </div>
         </div>
 
-        <Reveal delay={0.15} y={24} className="relative mx-auto w-full max-w-[340px] sm:max-w-[400px]">
+        <div className="fade-up relative mx-auto w-full max-w-[340px] sm:max-w-[400px]" style={{ "--d": "150ms" } as React.CSSProperties}>
           <Portrait alt={t("portraitAlt")}>
             {chips.map((chip) => (
               <span
@@ -111,7 +111,7 @@ export async function Hero() {
               </span>
             ))}
           </Portrait>
-        </Reveal>
+        </div>
       </div>
 
       <a
