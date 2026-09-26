@@ -65,8 +65,10 @@ export const profile: Profile = {
     },
   ],
   availability: {
-    // TODO(saad): [À CONFIRMER] mois exact de début du PFE (ex. « février 2027 »).
-    headline: { fr: "Disponible pour un stage PFE — 2027", en: "Available for a final-year internship — 2027" },
+    headline: {
+      fr: "Disponible pour un stage PFE — fin février 2027",
+      en: "Available for a final-year internship — late Feb 2027",
+    },
     type: {
       fr: "Stage de fin d'études (PFE)",
       en: "Final-year engineering internship (PFE)",
@@ -77,8 +79,8 @@ export const profile: Profile = {
       { fr: "Business Intelligence", en: "Business Intelligence" },
       { fr: "IA appliquée", en: "Applied AI" },
     ],
-    // TODO(saad): [À CONFIRMER] période et durée exactes.
-    period: { fr: "2027 — date à confirmer", en: "2027 — exact date to be confirmed" },
+    period: { fr: "À partir de fin février 2027", en: "From late February 2027" },
+    // TODO(saad): [À CONFIRMER] durée exacte du PFE.
     duration: { fr: "4 à 6 mois", en: "4 to 6 months" },
   },
   strengths: [

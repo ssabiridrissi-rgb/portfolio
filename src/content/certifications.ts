@@ -21,7 +21,6 @@ export const certifications: Certification[] = [
   {
     id: "aws-cloud",
     issuer: "AWS",
-    // TODO(saad): [À CONFIRMER] intitulé exact (ex. « AWS Certified Cloud Practitioner »).
     title: { fr: "Certification Cloud", en: "Cloud certification" },
     kind: "certification",
     logo: { monogram: "AWS", color: "#FF9900" },
@@ -30,7 +29,6 @@ export const certifications: Certification[] = [
   {
     id: "huawei-cloud",
     issuer: "Huawei",
-    // TODO(saad): [À CONFIRMER] intitulé exact (ex. « HCIA-Cloud Service »).
     title: { fr: "Certification Cloud", en: "Cloud certification" },
     kind: "certification",
     logo: { icon: "huawei" },
