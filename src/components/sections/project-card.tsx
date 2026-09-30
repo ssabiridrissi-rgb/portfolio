@@ -1,4 +1,4 @@
-import { ArrowUpRight, Clock, FolderGit2, Users } from "lucide-react";
+import { ArrowUpRight, Clock, Users } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { Badge, Tag } from "@/components/ui/badge";
 import { BrandLogo } from "@/components/ui/brand-logo";
@@ -50,31 +50,26 @@ export function StackTags({ project, limit }: { project: Project; limit?: number
   );
 }
 
+/** Only for projects whose code is public — the others simply show no code link. */
 function CodeLink({ project }: { project: Project }) {
   const t = useTranslations("projects");
   const locale = useLocale();
-  if (project.links.github) {
-    return (
-      <Button asChild variant="secondary" size="sm">
-        <ExternalLink href={project.links.github}>
-          <BrandLogo logo={{ icon: "github" }} />
-          {t("github")}
-          <span className="sr-only"> — {project.title[locale]}</span>
-        </ExternalLink>
-      </Button>
-    );
-  }
+  if (!project.links.github) return null;
   return (
-    <span className="inline-flex h-9 items-center gap-2 rounded-full border border-dashed border-border-strong px-3.5 text-xs text-subtle">
-      <BrandLogo logo={{ icon: "github" }} className="size-3.5" />
-      {t("codeSoon")}
-    </span>
+    <Button asChild variant="secondary" size="sm">
+      <ExternalLink href={project.links.github}>
+        <BrandLogo logo={{ icon: "github" }} />
+        {t("github")}
+        <span className="sr-only"> — {project.title[locale]}</span>
+      </ExternalLink>
+    </Button>
   );
 }
 
 /** Large bento card for featured projects. */
 export function FeaturedProjectCard({ project, large = false }: { project: Project; large?: boolean }) {
   const t = useTranslations("projects");
+  const cursor = useTranslations("cursor");
   const locale = useLocale();
 
   return (
@@ -108,14 +103,15 @@ export function FeaturedProjectCard({ project, large = false }: { project: Proje
           {project.team ? (
             <Badge>
               <Users className="size-3" aria-hidden />
-              {t("team", { count: project.team.size })}
+              {project.team.size ? t("team", { count: project.team.size }) : t("teamProject")}
             </Badge>
           ) : null}
-          <span className="font-mono text-xs text-subtle">{formatMonth(project.date, locale)}</span>
+          {project.date ? <span className="font-mono text-xs text-subtle">{formatMonth(project.date, locale)}</span> : null}
         </div>
-        <h3 className={cn("mt-4 font-display font-semibold tracking-tight", large ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl")}>
+        <h3 className={cn("mt-4 font-display leading-none font-extrabold uppercase", large ? "text-4xl sm:text-5xl" : "text-3xl sm:text-4xl")}>
           <Link
             href={`/projets/${project.slug}`}
+            data-cursor={cursor("view")}
             className="outline-none after:absolute after:inset-0 after:z-0 after:content-[''] focus-visible:underline"
           >
             {project.title[locale]}
@@ -147,70 +143,6 @@ export function FeaturedProjectCard({ project, large = false }: { project: Proje
             </Link>
           </Button>
           <CodeLink project={project} />
-        </div>
-      </div>
-    </article>
-  );
-}
-
-/** Compact card for the "other projects" grid. */
-export function CompactProjectCard({ project }: { project: Project }) {
-  const t = useTranslations("projects");
-  const locale = useLocale();
-
-  return (
-    <article className="spotlight group relative flex h-full flex-col rounded-3xl border border-border bg-surface p-6 shadow-card transition-colors duration-500 hover:border-border-strong">
-      <div className="flex items-center justify-between gap-3">
-        <span className="grid size-10 place-items-center rounded-xl border border-border bg-surface-2 text-accent-fg">
-          <FolderGit2 className="size-5" aria-hidden />
-        </span>
-        <span className="font-mono text-xs text-subtle">{formatMonth(project.date, locale)}</span>
-      </div>
-      <h3 className="mt-5 font-display text-lg font-semibold tracking-tight">
-        {project.links.github ? (
-          <ExternalLink
-            href={project.links.github}
-            className="outline-none after:absolute after:inset-0 after:content-[''] focus-visible:underline"
-          >
-            {project.title[locale]}
-          </ExternalLink>
-        ) : (
-          project.title[locale]
-        )}
-      </h3>
-      <p className="mt-1 font-mono text-xs text-subtle">{project.context[locale]}</p>
-      <p className="mt-3 text-sm leading-relaxed text-muted">{project.summary[locale]}</p>
-
-      {project.repos ? (
-        <ul className="relative z-10 mt-4 space-y-2">
-          {project.repos.map((repo) => (
-            <li key={repo.name}>
-              <ExternalLink
-                href={repo.href}
-                className="group/repo flex items-start gap-2 rounded-xl border border-border bg-surface-2/60 px-3 py-2 text-sm transition-colors hover:border-border-strong"
-              >
-                <BrandLogo logo={{ icon: "github" }} className="mt-0.5 size-3.5 text-subtle" />
-                <span className="min-w-0">
-                  <span className="block truncate font-mono text-xs text-fg">{repo.name}</span>
-                  <span className="block text-xs text-muted">{repo.summary[locale]}</span>
-                </span>
-              </ExternalLink>
-            </li>
-          ))}
-        </ul>
-      ) : null}
-
-      <div className="mt-auto pt-5">
-        <StackTags project={project} limit={4} />
-        <div className="mt-4 flex items-center justify-between text-sm">
-          {project.links.github ? (
-            <span className="inline-flex items-center gap-1.5 text-accent-fg">
-              {t("viewCode")}
-              <ArrowUpRight className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
-            </span>
-          ) : project.repos ? null : (
-            <span className="text-xs text-subtle">{t("codeSoon")}</span>
-          )}
         </div>
       </div>
     </article>

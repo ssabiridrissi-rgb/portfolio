@@ -18,6 +18,7 @@ export async function Education() {
       title={t("title")}
       subtitle={t("subtitle")}
       glow="center"
+      scene="education"
       headerAside={
         <Reveal delay={0.1} className="shrink-0">
           <span className="inline-flex items-center gap-2.5 rounded-full border border-accent-3/30 bg-accent-3/10 px-4 py-2 text-sm font-medium">
@@ -49,7 +50,7 @@ export async function Education() {
                 {e.ongoing ? <Badge variant="success">{t("ongoing")}</Badge> : null}
               </div>
             </div>
-            <h3 className="mt-6 font-display text-xl leading-snug font-semibold tracking-tight">{e.degree[locale]}</h3>
+            <h3 className="mt-6 font-display text-[1.7rem] leading-[1.05] font-extrabold uppercase">{e.degree[locale]}</h3>
             <p className="mt-2 text-muted">{e.school}</p>
             <div className="mt-auto flex items-center justify-between gap-3 pt-6 text-sm">
               <span className="inline-flex items-center gap-2 text-fg">

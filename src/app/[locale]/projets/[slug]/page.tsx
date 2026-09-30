@@ -1,20 +1,23 @@
-import { ArrowLeft, ArrowRight, CalendarDays, Layers, Lightbulb, ListChecks, Target, Users, Workflow } from "lucide-react";
+import { ArrowLeft, ArrowRight, CalendarDays, Layers, Lightbulb, ListChecks, Orbit, Target, Users, Workflow } from "lucide-react";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import { SolarOrbitLazy } from "@/components/distinctions/solar-orbit-lazy";
 import { StackTags, StatusBadge } from "@/components/sections/project-card";
 import { Badge } from "@/components/ui/badge";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "@/components/ui/external-link";
 import { Reveal } from "@/components/ui/reveal";
+import type { SceneName } from "@/components/universe/scenes";
 import { ArchitectureDiagram } from "@/components/visuals/architecture-diagram";
 import { caseStudyProjects, getProject, projectCategories } from "@/content/projects";
 import { Link } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { buildMetadata } from "@/lib/seo";
 import { formatMonth } from "@/lib/utils";
+import type { Project } from "@/types/content";
 
 type Props = { params: Promise<{ locale: Locale; slug: string }> };
 
@@ -40,11 +43,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
+/** Formation of the particle universe behind a case study, by main category. */
+function caseScene(project: Project): SceneName {
+  if (project.demo === "solar-orbit") return "case-space";
+  if (project.categories.includes("cloud-devops")) return "case-cloud";
+  if (project.categories[0] === "data-bi") return "case-data";
+  return "case-ai";
+}
+
 function Block({ icon, title, children, id }: { icon: ReactNode; title: string; children: ReactNode; id: string }) {
   return (
     <Reveal>
       <section aria-labelledby={id} className="border-t border-border pt-10">
-        <h2 id={id} className="mb-5 flex items-center gap-3 font-display text-2xl font-semibold tracking-tight">
+        <h2 id={id} className="mb-5 flex items-center gap-3 font-display text-3xl leading-none font-extrabold uppercase">
           <span className="grid size-9 place-items-center rounded-xl border border-accent/25 bg-accent/10 text-accent-fg [&_svg]:size-4">
             {icon}
           </span>
@@ -74,7 +85,7 @@ export default async function CaseStudyPage({ params }: Props) {
     .join(" · ");
 
   return (
-    <article className="relative pt-28 pb-10 sm:pt-32">
+    <article className="relative pt-28 pb-10 sm:pt-32" data-scene={caseScene(project)}>
       <div aria-hidden className="absolute inset-x-0 top-0 -z-10 h-[520px] bg-[radial-gradient(ellipse_at_top,var(--glow-1),transparent_65%)]" />
       <div className="container-page">
         <Reveal>
@@ -88,41 +99,39 @@ export default async function CaseStudyPage({ params }: Props) {
         </Reveal>
 
         <header className="mt-8 max-w-3xl">
-          <Reveal delay={0.05} className="flex flex-wrap items-center gap-2">
+          {/* Above the fold: CSS-only entrance, and the title/summary (LCP) are never hidden. */}
+          <div className="fade-up flex flex-wrap items-center gap-2">
             <StatusBadge project={project} />
             <Badge variant="accent">{categories}</Badge>
             {project.team ? (
               <Badge>
                 <Users className="size-3" aria-hidden />
-                {tp("team", { count: project.team.size })}
+                {project.team.size ? tp("team", { count: project.team.size }) : tp("teamProject")}
               </Badge>
             ) : null}
-          </Reveal>
-          <Reveal delay={0.1}>
+          </div>
+          <div>
             <h1 className="mt-5 text-h2 text-balance">{project.title[locale]}</h1>
             <p className="mt-4 text-lead text-accent-fg">{project.subtitle[locale]}</p>
             <p className="mt-5 text-lead text-pretty text-muted">{project.summary[locale]}</p>
-          </Reveal>
-          <Reveal delay={0.15} className="mt-8 flex flex-wrap gap-3">
-            {project.links.github ? (
-              <Button asChild>
-                <ExternalLink href={project.links.github}>
-                  <BrandLogo logo={{ icon: "github" }} />
-                  {tp("viewCode")}
-                </ExternalLink>
-              </Button>
-            ) : (
-              <span className="inline-flex h-11 items-center gap-2 rounded-full border border-dashed border-border-strong px-5 text-sm text-subtle">
-                <BrandLogo logo={{ icon: "github" }} />
-                {tp("codeSoon")}
-              </span>
-            )}
-            {project.links.demo ? (
-              <Button asChild variant="secondary">
-                <ExternalLink href={project.links.demo}>Demo</ExternalLink>
-              </Button>
-            ) : null}
-          </Reveal>
+          </div>
+          {project.links.github || project.links.demo ? (
+            <div className="fade-up mt-8 flex flex-wrap gap-3" style={{ "--d": "150ms" } as CSSProperties}>
+              {project.links.github ? (
+                <Button asChild>
+                  <ExternalLink href={project.links.github}>
+                    <BrandLogo logo={{ icon: "github" }} />
+                    {tp("viewCode")}
+                  </ExternalLink>
+                </Button>
+              ) : null}
+              {project.links.demo ? (
+                <Button asChild variant="secondary">
+                  <ExternalLink href={project.links.demo}>Demo</ExternalLink>
+                </Button>
+              ) : null}
+            </div>
+          ) : null}
         </header>
 
         {project.diagram ? (
@@ -135,6 +144,24 @@ export default async function CaseStudyPage({ params }: Props) {
                 label={tp("diagram", { project: project.title[locale] })}
                 className="mx-auto min-w-[640px] max-w-4xl"
               />
+            </div>
+          </Reveal>
+        ) : null}
+
+        {project.demo === "solar-orbit" ? (
+          <Reveal className="relative mt-6 overflow-hidden rounded-3xl border border-accent-2/25 bg-surface p-5 shadow-card sm:p-10">
+            <div aria-hidden className="bg-grid absolute inset-0 opacity-50" />
+            <div className="relative">
+              <h2 className="flex items-center gap-3 font-display text-3xl leading-none font-extrabold uppercase">
+                <span className="grid size-9 place-items-center rounded-xl border border-accent-2/30 bg-accent-2/10 text-accent-fg [&_svg]:size-4">
+                  <Orbit />
+                </span>
+                {t("demo")}
+              </h2>
+              <p className="mt-2 max-w-2xl text-muted">{t("demoHint")}</p>
+              <div className="mx-auto mt-8 max-w-3xl">
+                <SolarOrbitLazy variant="full" />
+              </div>
             </div>
           </Reveal>
         ) : null}
@@ -194,10 +221,12 @@ export default async function CaseStudyPage({ params }: Props) {
           <aside className="lg:sticky lg:top-24 lg:self-start">
             <Reveal className="rounded-3xl border border-border bg-surface p-6 shadow-card">
               <dl className="space-y-5 text-sm">
-                <div>
-                  <dt className="font-mono text-[0.7rem] tracking-widest text-subtle uppercase">{t("date")}</dt>
-                  <dd className="mt-1 text-fg">{formatMonth(project.date, locale)}</dd>
-                </div>
+                {project.date ? (
+                  <div>
+                    <dt className="font-mono text-[0.7rem] tracking-widest text-subtle uppercase">{t("date")}</dt>
+                    <dd className="mt-1 text-fg">{formatMonth(project.date, locale)}</dd>
+                  </div>
+                ) : null}
                 <div>
                   <dt className="font-mono text-[0.7rem] tracking-widest text-subtle uppercase">{t("status")}</dt>
                   <dd className="mt-1.5">
@@ -214,19 +243,17 @@ export default async function CaseStudyPage({ params }: Props) {
                     <StackTags project={project} />
                   </dd>
                 </div>
-                <div>
-                  <dt className="font-mono text-[0.7rem] tracking-widest text-subtle uppercase">{t("links")}</dt>
-                  <dd className="mt-1.5">
-                    {project.links.github ? (
+                {project.links.github ? (
+                  <div>
+                    <dt className="font-mono text-[0.7rem] tracking-widest text-subtle uppercase">{t("links")}</dt>
+                    <dd className="mt-1.5">
                       <ExternalLink href={project.links.github} className="inline-flex items-center gap-2 break-all text-accent-fg hover:underline">
                         <BrandLogo logo={{ icon: "github" }} />
                         GitHub
                       </ExternalLink>
-                    ) : (
-                      <span className="text-subtle">{tp("codeSoon")}</span>
-                    )}
-                  </dd>
-                </div>
+                    </dd>
+                  </div>
+                ) : null}
               </dl>
             </Reveal>
           </aside>
@@ -241,7 +268,7 @@ export default async function CaseStudyPage({ params }: Props) {
               <ArrowLeft className="size-3.5 transition-transform group-hover:-translate-x-0.5" aria-hidden />
               {t("previous")}
             </span>
-            <span className="mt-3 block font-display text-xl font-semibold">{prev.title[locale]}</span>
+            <span className="mt-3 block font-display text-3xl leading-none font-extrabold uppercase">{prev.title[locale]}</span>
           </Link>
           <Link
             href={`/projets/${next.slug}`}
@@ -251,7 +278,7 @@ export default async function CaseStudyPage({ params }: Props) {
               {t("next")}
               <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden />
             </span>
-            <span className="mt-3 block font-display text-xl font-semibold">{next.title[locale]}</span>
+            <span className="mt-3 block font-display text-3xl leading-none font-extrabold uppercase">{next.title[locale]}</span>
           </Link>
         </nav>
       </div>

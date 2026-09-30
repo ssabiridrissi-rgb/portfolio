@@ -5,7 +5,7 @@ import { SkillsGraph } from "./skills-graph";
 export async function Skills() {
   const t = await getTranslations("skills");
   return (
-    <Section id="skills" eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} glow="right">
+    <Section id="skills" eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} glow="right" scene="skills">
       <SkillsGraph />
     </Section>
   );

@@ -9,21 +9,30 @@ Portfolio de **Saad Sabir Idrissi**, élève ingénieur en informatique spécial
 ## Fonctionnalités
 
 - **Bilingue FR / EN** (`/fr`, `/en`) · **thème sombre / clair** sans flash
-- **Hero** avec réseau de nœuds en canvas, sous-titres animés, portrait avec effet 3D
+- **Identité « salle de projection »** : lumière dorée sur fond nuit (et thème clair papier / laiton), titres éditoriaux en Fraunces avec italiques dorées
+- **Univers de particules WebGL** (sans bibliothèque) derrière tout le site : une galaxie dorée autour du portrait, qui se métamorphose au défilement en planète, entonnoir ETL, hélice, histogramme 3D, système solaire, réseau, paysage de données, globe Maroc ↔ Chine… et finit par écrire le prénom ; un clic sur le fond envoie une onde de choc
+- **Photo projetée** : trame de points de lumière, la lumière suit la souris et révèle la vraie photo, clic = flash
+- **Hero** : nom dont les lettres s'épaississent sous le curseur, faisceau de projecteur, badge du meilleur classement
+- **Curseur lumière** avec étiquettes contextuelles, boutons magnétiques, liens de navigation qui « se déchiffrent » au survol, défilement fluide à inertie (Lenis)
+- **Autres projets** en index éditorial avec aperçu flottant qui suit le curseur
+- **Bandeau typographique géant** qui s'incline selon la vitesse de défilement
+- **Méthode** (scrollytelling) : fichiers bruts → ETL → entrepôt en étoile → dashboard → recommandation validée, chaque étape reliée aux vrais projets
+- **Distinctions** : NXP Cup (3ᵉ place, circuit animé), hackathons (simulateur d'orbite SolarNav AI, tableau fournisseurs AI Lab), engagement associatif
 - **Statistiques calculées** automatiquement depuis le contenu
 - **Timeline d'expérience** qui se remplit au scroll
 - **Projets** : bento grid filtrable, schémas d'architecture, **pages d'étude de cas** (contexte → problème → approche → architecture → résultats → apprentissages)
 - **Graphe de compétences** : chaque compétence est reliée aux projets, expériences et certifications qui l'utilisent
 - **Activité GitHub en direct** (API GitHub, cache 1 h, repli hors ligne)
 - **Contact** : formulaire validé (zod), envoi via Resend, repli automatique sur `mailto:`, anti-spam, fiche **vCard**
-- **Palette de commandes** `Ctrl/⌘ + K` — et un terminal caché (tapez `saad` dans la palette)
+- **Palette de commandes** `Ctrl/⌘ + K` — un terminal caché (tapez `saad` dans la palette) et un mode « lumières éteintes » (lampe torche)
+- **Thème clair / sombre** qui bascule en cercle de lumière depuis le bouton
 - **Mode recruteur** : résumé d'une page, imprimable en PDF (`/fr/recruteur`)
 - **SEO** : métadonnées par page et par langue, hreflang, Open Graph dynamique, sitemap, robots, JSON-LD `Person`
 - Accessibilité : navigation clavier, lien d'évitement, `prefers-reduced-motion` respecté
 
 ## Stack
 
-Next.js 15 (App Router) · TypeScript strict · Tailwind CSS v4 · Motion · next-intl · next-themes · cmdk · Resend · zod + react-hook-form · simple-icons · Vercel Analytics & Speed Insights.
+Next.js 15 (App Router) · TypeScript strict · Tailwind CSS v4 · Motion · Lenis · WebGL natif · next-intl · next-themes · cmdk · Resend · zod + react-hook-form · simple-icons · Vercel Analytics & Speed Insights.
 
 ## Lancer en local
 
@@ -63,6 +72,8 @@ Tout le contenu est dans **`src/content/`** — aucun JSX à toucher.
 | `skills.ts` | compétences et catégories |
 | `education.ts` | formation |
 | `certifications.ts` | certifications et langues |
+| `achievements.ts` | compétitions, hackathons, engagement associatif |
+| `method.ts` | les 5 étapes de la section Méthode (les preuves sont calculées) |
 
 Les textes d'interface sont dans `src/messages/fr.json` et `src/messages/en.json`.
 
@@ -72,6 +83,10 @@ Les textes d'interface sont dans `src/messages/fr.json` et `src/messages/en.json
 2. Pour une **étude de cas**, renseigner `caseStudy` : la page `/[locale]/projets/[slug]` est générée automatiquement.
 3. Pour un **schéma d'architecture**, ajouter une entrée dans `src/components/visuals/diagram-data.ts` et référencer son id dans `diagram`.
 4. `featured: true` place le projet dans la bento grid (dans l'ordre du fichier).
+
+### Ajouter une distinction
+
+Ajouter un objet dans `src/content/achievements.ts` (type `Achievement`) : `kind` (`competition`, `hackathon`, `leadership`), `rank` pour un classement, `projectSlug` pour renvoyer vers une étude de cas, `visual` pour le visuel de la carte. Un champ inconnu reste absent de l'écran (`date`, `summary` sont optionnels).
 
 ### Ajouter une expérience
 

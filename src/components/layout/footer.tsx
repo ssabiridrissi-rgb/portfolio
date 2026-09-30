@@ -23,11 +23,9 @@ export function Footer() {
       <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,transparent,var(--accent),transparent)] opacity-50" />
       <div className="container-page grid gap-12 py-14 md:grid-cols-[1.4fr_1fr_1fr]">
         <div className="max-w-sm">
-          <p className="flex items-center gap-2.5 font-display text-lg font-semibold">
-            <span className="grid size-8 place-items-center rounded-lg bg-gradient-button font-mono text-[0.68rem] font-bold text-accent-contrast">
-              {profile.initials}
-            </span>
-            {profile.name}
+          <p className="wordmark">
+            <span className="font-display text-4xl leading-none">{profile.name}</span>
+            <span aria-hidden className="wordmark-dot" />
           </p>
           <p className="mt-4 text-sm text-muted">{t("tagline")}</p>
           <a

@@ -92,6 +92,27 @@ export const diagrams: Record<DiagramId, Diagram> = {
     ],
     consumer: { id: "pbi", label: "Power BI", sub: { fr: "mesures DAX", en: "DAX measures" }, tone: "cyan" },
   },
+  solarnav: {
+    kind: "flow",
+    columns: [
+      [
+        { id: "orbits", label: { fr: "Orbites réelles", en: "Real orbits" }, sub: "N2YO · Skyfield", tone: "neutral" },
+        { id: "sim", label: { fr: "Scénarios simulés", en: "Simulated scenarios" }, sub: { fr: "GEO · Lune · zénith", en: "GEO · Moon · zenith" }, tone: "neutral" },
+      ],
+      [{ id: "dataset", label: { fr: "40\u202f000 exemples", en: "40,000 examples" }, sub: { fr: "60\u00a0% réels · 40\u00a0% simulés", en: "60% real · 40% simulated" }, tone: "violet" }],
+      [{ id: "labels", label: { fr: "Étiquetage physique", en: "Physics labels" }, sub: { fr: "361 angles testés", en: "361 angles tested" }, tone: "accent" }],
+      [{ id: "model", label: { fr: "Modèle hybride", en: "Hybrid model" }, sub: { fr: "90° − élév. + ExtraTrees", en: "90° − elev. + ExtraTrees" }, tone: "cyan" }],
+      [{ id: "arm", label: { fr: "Bras robotisé", en: "Robotic arm" }, sub: { fr: "oriente le panneau", en: "turns the panel" }, tone: "neutral" }],
+    ],
+    edges: [
+      { from: "orbits", to: "dataset" },
+      { from: "sim", to: "dataset" },
+      { from: "dataset", to: "labels" },
+      { from: "labels", to: "model" },
+      { from: "model", to: "arm" },
+    ],
+    groups: [{ label: { fr: "Ma partie\u00a0: la donnée", en: "My part: the data" }, nodes: ["orbits", "sim", "dataset", "labels"], tone: "accent" }],
+  },
   procuretrace: {
     kind: "flow",
     columns: [

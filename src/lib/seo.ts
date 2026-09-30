@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { awards, leadership } from "@/content/achievements";
 import { certifications } from "@/content/certifications";
 import { education } from "@/content/education";
 import { profile } from "@/content/profile";
@@ -87,9 +88,9 @@ export function personJsonLd(locale: Locale) {
       .map((e) => ({ "@type": "CollegeOrUniversity", name: e.school })),
     knowsAbout: skills.map((s) => s.name),
     knowsLanguage: ["ar", "fr", "en"],
-    hasCredential: certifications
-      .filter((c) => c.kind === "certification")
-      .map((c) => ({
+    award: awards.map((a) => `${a.name} — ${a.headline[locale]}`),
+    memberOf: leadership.map((a) => ({ "@type": "Organization", name: a.name })),
+    hasCredential: certifications.map((c) => ({
         "@type": "EducationalOccupationalCredential",
         name: `${c.issuer} — ${c.title[locale]}`,
         credentialCategory: "certification",

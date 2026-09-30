@@ -249,7 +249,7 @@ export function DiagramPreview({
             ) : null}
             <div className={cn("flex gap-1.5", vertical ? "flex-row flex-wrap justify-center" : "flex-col")}>
               {column.map((node) => (
-                <div key={node.id} className="rounded-xl border border-border-strong bg-surface-2/90 px-2.5 py-1.5 shadow-sm backdrop-blur">
+                <div key={node.id} className="rounded-xl border border-border-strong bg-surface-2 px-2.5 py-1.5 shadow-sm">
                   <p className="flex items-center gap-1.5 text-[0.8rem] leading-tight font-semibold text-fg">
                     <span aria-hidden className={cn("size-1.5 shrink-0 rounded-full", DOT[node.tone ?? "neutral"])} />
                     {text(node.label, locale)}

@@ -1,12 +1,13 @@
 import type React from "react";
-import { ArrowDown, ArrowRight, Mail } from "lucide-react";
+import { ArrowDown, ArrowRight, Mail, Trophy } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { CvMenu } from "@/components/layout/cv-menu";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "@/components/ui/external-link";
+import { awards } from "@/content/achievements";
 import { profile } from "@/content/profile";
-import { HeroCanvas } from "./hero-canvas";
+import { InteractiveName } from "./interactive-name";
 import { Portrait } from "./portrait";
 import { Typewriter } from "./typewriter";
 
@@ -26,12 +27,20 @@ export async function Hero() {
     { label: "Power BI · DAX", className: "-right-3 top-[46%] sm:-right-8" },
     { label: "AWS · Docker", className: "-left-2 bottom-[12%] sm:-left-8" },
   ];
+  // The best-ranked competition, straight from the content.
+  const podium = awards.filter((a) => a.rank).sort((a, b) => (a.rank ?? 99) - (b.rank ?? 99))[0];
+  const [firstName, ...lastNames] = profile.name.split(" ");
 
   return (
-    <section aria-labelledby="hero-title" className="relative isolate flex min-h-[100svh] items-center overflow-hidden pt-24 pb-20">
+    <section
+      aria-labelledby="hero-title"
+      data-scene="hero"
+      className="relative isolate flex min-h-[100svh] items-center overflow-hidden pt-24 pb-20"
+    >
+      {/* The particle galaxy (components/universe) turns behind the portrait; a stage light crosses the room.
+          The glows double as the no-WebGL fallback. */}
       <div aria-hidden className="absolute inset-0 -z-20">
-        <HeroCanvas />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,transparent_20%,var(--bg)_75%)]" />
+        <div className="hero-beam absolute inset-0" />
         <div className="absolute -top-40 left-1/4 h-[520px] w-[520px] rounded-full bg-[radial-gradient(closest-side,var(--glow-1),transparent)]" />
         <div className="absolute top-1/3 right-0 h-[420px] w-[420px] rounded-full bg-[radial-gradient(closest-side,var(--glow-3),transparent)]" />
       </div>
@@ -50,14 +59,12 @@ export async function Hero() {
           </div>
 
           <div>
-            <p className="mt-8 font-mono text-sm text-muted">{t("hello")}</p>
-            <h1 id="hero-title" className="mt-3 text-display text-balance">
-              Saad <span className="text-gradient">Sabir Idrissi</span>
-            </h1>
+            <p className="mt-9 font-mono text-sm text-muted">{t("hello")}</p>
+            <InteractiveName id="hero-title" first={firstName} last={lastNames.join(" ")} />
           </div>
 
           <div>
-            <p className="mt-6 max-w-xl text-lg font-medium text-fg/90 sm:text-xl">{profile.title[locale]}</p>
+            <p className="mt-7 max-w-xl text-lg font-medium text-fg/90 sm:text-xl">{profile.title[locale]}</p>
             <p className="mt-3 flex min-h-[1.75rem] items-center gap-2 font-mono text-base text-muted sm:text-lg">
               <span aria-hidden className="text-accent-fg">&gt;</span>
               <Typewriter phrases={profile.roles.map((r) => r[locale])} label={t("rolePrefix")} />
@@ -71,7 +78,7 @@ export async function Hero() {
           </div>
 
           <div className="fade-up mt-9 flex flex-wrap items-center gap-3" style={{ "--d": "240ms" } as React.CSSProperties}>
-            <Button asChild size="lg">
+            <Button asChild size="lg" data-magnetic="">
               <a href="#projects">
                 {t("viewProjects")}
                 <ArrowRight className="transition-transform duration-300 group-hover/button:translate-x-0.5" />
@@ -88,7 +95,8 @@ export async function Hero() {
                     href={s.href}
                     aria-label={s.label}
                     title={s.label}
-                    className="grid size-11 place-items-center rounded-full border border-border bg-surface/60 text-muted backdrop-blur transition-[color,border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-accent/50 hover:text-fg"
+                    data-magnetic=""
+                    className="grid size-11 place-items-center rounded-full border border-border bg-surface text-muted transition-[color,border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent-fg"
                   >
                     {s.icon}
                   </ExternalLink>
@@ -98,18 +106,36 @@ export async function Hero() {
           </div>
         </div>
 
-        <div className="fade-up relative mx-auto w-full max-w-[340px] sm:max-w-[400px]" style={{ "--d": "150ms" } as React.CSSProperties}>
-          <Portrait alt={t("portraitAlt")}>
-            {chips.map((chip) => (
+        <div className="fade-up relative mx-auto w-full max-w-[340px] sm:max-w-[420px]" style={{ "--d": "150ms" } as React.CSSProperties}>
+          <Portrait
+            alt={t("portraitAlt")}
+            place={profile.coordinates}
+            hintPointer={t("holoHint")}
+            hintTouch={t("holoHintTouch")}
+            cursorLabel={t("holoCursor")}
+            scanLabel={t("scanLabel")}
+            locale={locale}
+          >
+            {chips.map((chip, i) => (
               <span
                 key={chip.label}
                 aria-hidden
-                className={`absolute ${chip.className} hidden rounded-full border border-border-strong bg-surface/80 px-3 py-1.5 font-mono text-[0.7rem] text-fg shadow-lg backdrop-blur-md sm:inline-flex sm:items-center sm:gap-2 [transform:translateZ(40px)]`}
+                className={`float-y absolute ${chip.className} hidden rounded-full border border-border-strong bg-surface px-3 py-1.5 font-mono text-[0.7rem] text-fg shadow-lg sm:inline-flex sm:items-center sm:gap-2`}
+                style={{ "--float-delay": `${-i * 1.3}s`, "--float-duration": "5s" } as React.CSSProperties}
               >
-                <span className="size-1.5 rounded-full bg-accent-2" />
+                <span className="size-1.5 rounded-full bg-accent" />
                 {chip.label}
               </span>
             ))}
+            {podium ? (
+              <a
+                href="#distinctions"
+                className="absolute -top-4 right-2 z-10 inline-flex items-center gap-2 rounded-full border border-bronze/40 bg-surface px-3 py-1.5 font-mono text-[0.7rem] text-fg shadow-[0_10px_30px_-10px_var(--bronze-glow)] transition-colors hover:border-bronze/70 sm:-right-6"
+              >
+                <Trophy className="size-3.5 text-bronze" aria-hidden />
+                {podium.name} · {podium.headline[locale]}
+              </a>
+            ) : null}
           </Portrait>
         </div>
       </div>

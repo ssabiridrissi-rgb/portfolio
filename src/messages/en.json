@@ -8,8 +8,10 @@
   },
   "nav": {
     "about": "About",
+    "method": "Method",
     "experience": "Experience",
     "projects": "Projects",
+    "distinctions": "Awards",
     "skills": "Skills",
     "github": "GitHub",
     "education": "Education",
@@ -45,19 +47,36 @@
     "viewProjects": "See my projects",
     "scroll": "Scroll",
     "portraitAlt": "Portrait of Saad Sabir Idrissi in a navy suit at a recruitment fair",
+    "holoCursor": "Scatter",
+    "holoHintTouch": "Drag · tap",
+    "holoHint": "Move the mouse · click",
+    "scanLabel": "3D reconstruction",
     "socials": "Social links and contact"
+  },
+  "opening": {
+    "skip": "Skip intro",
+    "portfolio": "Portfolio",
+    "tagline": "Data · BI · AI"
+  },
+  "cursor": {
+    "view": "View",
+    "open": "Open"
+  },
+  "lights": {
+    "hint": "Lights off: your cursor is the torch. Press Escape to switch them back on."
   },
   "stats": {
     "label": "Key figures",
     "experiences": "roles in industry",
     "projects": "projects built",
     "certifications": "certifications",
+    "awards": "competition & hackathons",
     "languages": "languages",
     "degrees": "degrees (Morocco / China)"
   },
   "about": {
     "eyebrow": "About",
-    "title": "Data, from source to decision",
+    "title": "Data, *from source to decision*",
     "bringTitle": "What I bring",
     "lookingTitle": "What I'm looking for",
     "type": "Type",
@@ -68,9 +87,25 @@
     "tldrTitle": "TL;DR for recruiters",
     "qualities": "Soft skills"
   },
+  "marquee": {
+    "label": "Fields and tools"
+  },
+  "method": {
+    "eyebrow": "Method",
+    "title": "From raw data *to a decision*",
+    "subtitle": "Five steps I have all done, in a company or in a project.",
+    "step": "Step {n}",
+    "proof": "Where I did it",
+    "visualLabel": "Animation: source files go through ETL, settle into a star-schema warehouse, become a dashboard and then an approved recommendation.",
+    "fact": "Fact",
+    "dim": "Dim",
+    "kpi": "KPI",
+    "recommendation": "Recommendation",
+    "validated": "Approved"
+  },
   "experience": {
     "eyebrow": "Career",
-    "title": "Work experience",
+    "title": "Professional *experience*",
     "subtitle": "From sales analytics at Renault to Power BI dashboards: data that helps business teams decide.",
     "data": "Data",
     "kind": {
@@ -82,18 +117,18 @@
   },
   "projects": {
     "eyebrow": "Work",
-    "title": "Selected projects",
-    "subtitle": "Data warehouses, applied AI and cloud infrastructure. Each project is shown as it really is, with the part I actually played.",
+    "title": "Selected *projects*",
+    "subtitle": "Data warehouses, applied AI and cloud: each project with the part I actually played.",
     "filterLabel": "Filter projects by category",
     "others": "More projects",
     "caseStudy": "Case study",
     "github": "GitHub",
     "viewCode": "View code",
-    "codeSoon": "Code coming soon",
     "done": "Completed",
     "inProgress": "In progress",
     "exploreGithub": "Explore my GitHub",
     "team": "Team of {count}",
+    "teamProject": "Team project",
     "empty": "No projects in this category yet.",
     "count": "{count, plural, one {# project} other {# projects}}",
     "diagram": "Architecture diagram: {project}"
@@ -113,15 +148,56 @@
     "next": "Next project",
     "date": "Date",
     "status": "Status",
-    "category": "Category"
+    "category": "Category",
+    "demo": "Interactive demo",
+    "demoHint": "Play with dust and heat: that's the part the AI learns to correct."
+  },
+  "distinctions": {
+    "eyebrow": "Awards & involvement",
+    "title": "Competitions, hackathons *and involvement*",
+    "subtitle": "What I do outside the classroom: competitions, hackathons and two student associations.",
+    "competition": "Competition",
+    "hackathon": "Hackathon",
+    "leadership": "Student leadership",
+    "ordinal": "{rank, selectordinal, one {st} two {nd} few {rd} other {th}}",
+    "caseStudy": "Case study",
+    "illustration": "How it works, with sample data",
+    "supplier": "Supplier {name}",
+    "part": "Part {n}",
+    "parts": "Part references",
+    "bestPrice": "Best price",
+    "trackLabel": "Animation: an autonomous car laps a figure-eight track",
+    "boardLabel": "Illustration: suppliers ranked by price, with the cheapest highlighted"
+  },
+  "solar": {
+    "label": "Simulation: a satellite circles the Earth, turns its solar panel towards the sun, then folds it in the shadow",
+    "play": "Start the orbit",
+    "pause": "Pause",
+    "position": "Position on the orbit",
+    "dust": "Dust",
+    "temperature": "Temperature",
+    "sunlit": "in sunlight",
+    "shadow": "in shadow",
+    "elevation": "Sun elevation",
+    "angle": "Physics angle",
+    "fold": "folded",
+    "rule": "angle = 90° − elevation",
+    "correction": "AI correction",
+    "correctionNone": "none",
+    "correctionDust": "tilt further",
+    "correctionHeat": "turn away from the sun",
+    "note": "A simplified 2D view of the physics rule, not the trained model's predictions.",
+    "sun": "Sun",
+    "earth": "Earth"
   },
   "skills": {
     "eyebrow": "Skills",
-    "title": "A skills graph, not a list",
-    "subtitle": "Hover over or select a skill to see where I've actually used it.",
+    "title": "My skills, *where they were used*",
+    "subtitle": "Hover or select a skill to see where I used it.",
     "usedAt": "Used at {companies}",
     "usedIn": "{count, plural, one {Used in # project} other {Used in # projects}}",
     "certified": "Certified · {issuers}",
+    "competed": "Competition · {events}",
     "learning": "Studied at university",
     "usageTitle": "Projects, roles and certifications",
     "hint": "Tip: hover over an item on the right to see the skills behind it.",
@@ -130,7 +206,7 @@
   },
   "github": {
     "eyebrow": "Open source",
-    "title": "GitHub activity",
+    "title": "GitHub *activity*",
     "subtitle": "Public data from my profile, refreshed automatically every hour.",
     "repos": "public repositories",
     "languages": "Top languages (by repository)",
@@ -141,7 +217,7 @@
   },
   "education": {
     "eyebrow": "Education",
-    "title": "An international engineering track",
+    "title": "An *international* engineering path",
     "subtitle": "An engineering degree in Morocco, plus a double degree in Big Data in China.",
     "ongoing": "In progress",
     "doubleDegree": "Double degree Morocco / China"
@@ -150,13 +226,12 @@
     "eyebrow": "Certifications & languages",
     "title": "Certifications",
     "verify": "Verify",
-    "competition": "Competition",
     "certification": "Certification",
     "languagesTitle": "Languages"
   },
   "contact": {
     "eyebrow": "Contact",
-    "title": "Let's work together",
+    "title": "Let's work *together*",
     "subtitle": "Have a final-year internship in Data, BI or AI? A question about a project? I reply quickly.",
     "name": "Full name",
     "email": "Work email",
@@ -194,6 +269,12 @@
     "addContactHint": "Downloads a vCard (.vcf)",
     "mailSubject": "[{type}] Portfolio contact — {name}"
   },
+  "finale": {
+    "eyebrow": "End of the reel",
+    "title": "A final-year internship in data, BI or AI? *Let's talk.*",
+    "contact": "Get in touch",
+    "recruiter": "One-page profile"
+  },
   "footer": {
     "tagline": "Data & AI engineering student looking for a final-year internship.",
     "quickLinks": "Quick links",
@@ -221,18 +302,23 @@
     "recruiter": "Open recruiter mode",
     "cursorOn": "Turn on custom cursor",
     "cursorOff": "Turn off custom cursor",
-    "tip": "Tip: try typing “saad”…"
+    "lightsOff": "Turn the lights off (torch mode)",
+    "tip": "Tip: try typing “saad”…",
+    "replayOpening": "Replay the opening"
   },
   "terminal": {
     "title": "saad@portfolio: ~",
     "close": "Close terminal",
     "input": "Terminal command",
     "welcome": "Welcome! Type “help” to see the available commands.",
-    "help": "Available commands: help, whoami, skills, projects, contact, cv, clear, exit",
+    "help": "Available commands: help, whoami, skills, projects, awards, lights, intro, contact, cv, clear, exit",
     "notFound": "command not found: {cmd}. Type “help”.",
     "cv": "Downloading the Data & BI résumé…",
     "projectsIntro": "Featured projects:",
-    "contactIntro": "Get in touch:"
+    "awardsIntro": "Awards & involvement:",
+    "contactIntro": "Get in touch:",
+    "lights": "Lights going out…",
+    "opening": "Curtain up…"
   },
   "recruiter": {
     "eyebrow": "Recruiter mode",
@@ -244,6 +330,9 @@
     "topSkills": "Key skills",
     "topProjects": "Key projects",
     "experience": "Data experience",
+    "distinctions": "Awards & involvement",
+    "hackathons": "Hackathons",
+    "leadership": "Student leadership",
     "contact": "Contact",
     "education": "Education",
     "languages": "Languages",

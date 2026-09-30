@@ -17,6 +17,114 @@ export const projectCategories: { id: ProjectCategory | "all"; label: { fr: stri
  */
 export const projects: Project[] = [
   {
+    slug: "solarnav-ai",
+    title: { fr: "SolarNav AI", en: "SolarNav AI" },
+    subtitle: {
+      fr: "Panneaux solaires orientés par une IA hybride physique + ExtraTrees",
+      en: "Solar panels steered by a hybrid physics + ExtraTrees model",
+    },
+    categories: ["ai", "data-bi"],
+    // TODO(saad): date du hackathon GoMyCode.
+    status: "done",
+    featured: true,
+    context: {
+      fr: "Hackathon GoMyCode — projet d'équipe. Mon rôle\u00a0: responsable de la partie data.",
+      en: "GoMyCode hackathon — team project. My role: data lead.",
+    },
+    summary: {
+      fr: "Un modèle hybride qui prédit l'angle optimal d'un panneau solaire spatial à partir de 5 mesures, entraîné sur 40\u202f000 exemples que j'ai construits\u00a0; un bras robotisé fait pivoter le panneau.",
+      en: "A hybrid model that predicts the best angle for a space solar panel from 5 inputs, trained on 40,000 examples I built; a robotic arm turns the panel.",
+    },
+    highlights: [
+      {
+        fr: "40\u202f000 exemples\u00a0: 60\u00a0% d'orbites réelles (ISS, Hubble, NOAA-19), 40\u00a0% simulés",
+        en: "40,000 examples: 60% real orbits (ISS, Hubble, NOAA-19), 40% simulated",
+      },
+      {
+        fr: "Modèle hybride\u00a0: 99\u00a0% des prédictions à ±2°, contre 92\u00a0% pour un modèle 100\u00a0% IA",
+        en: "Hybrid model: 99% of predictions within ±2°, versus 92% for a pure-AI model",
+      },
+      {
+        fr: "Mon rôle\u00a0: responsable data — collecte, simulation et étiquetage du jeu d'entraînement",
+        en: "My role: data lead — collecting, simulating and labelling the training set",
+      },
+    ],
+    skills: ["python", "machine-learning", "data-analysis"],
+    extraStack: ["Skyfield", "API N2YO", "ExtraTrees"],
+    // TODO(saad): taille de l'équipe ; confirmer que l'étiquetage faisait partie de ta partie data.
+    team: {
+      role: {
+        fr: "Responsable data\u00a0: récupération des orbites réelles (API N2YO, Skyfield), génération des scénarios simulés et étiquetage physique des 40\u202f000 exemples.",
+        en: "Data lead: pulling real orbits (N2YO API, Skyfield), generating the simulated scenarios and labelling the 40,000 examples with physics.",
+      },
+    },
+    // TODO(saad): lien du dépôt ou d'une démo vidéo du bras robotisé.
+    links: {},
+    diagram: "solarnav",
+    demo: "solar-orbit",
+    caseStudy: {
+      context: {
+        fr: "Projet réalisé en équipe lors d'un hackathon GoMyCode\u00a0: un panneau solaire monté sur un bras robotisé, orienté par un modèle d'IA. J'étais responsable de la partie data, c'est-à-dire du jeu de données sur lequel le modèle apprend.",
+        en: "A team project built during a GoMyCode hackathon: a solar panel mounted on a robotic arm and steered by an AI model. I was the data lead, in charge of the dataset the model learns from.",
+      },
+      problem: {
+        fr: "Un panneau produit le plus quand il fait face au soleil\u00a0: la règle de base est une inclinaison de 90° moins la hauteur du soleil. Dans l'espace, trois choses la compliquent\u00a0: la poussière (surtout sur une base lunaire), la chaleur (au-delà d'environ 100\u00a0°C, le rendement chute) et l'ombre de la Terre, où le panneau se replie à 0°.",
+        en: "A panel produces the most when it faces the sun: the basic rule is a tilt of 90° minus the sun's elevation. In space, three things get in the way: dust (especially on a lunar base), heat (above roughly 100 °C, efficiency drops) and the Earth's shadow, where the panel folds back to 0°.",
+      },
+      approach: [
+        {
+          fr: "Cadrer le modèle\u00a0: 5 entrées (hauteur et direction du soleil, exposition soleil/ombre, niveau de poussière, température de surface) et une seule sortie, l'angle optimal.",
+          en: "Frame the model: 5 inputs (sun elevation and direction, sunlit or in shadow, dust level, surface temperature) and a single output, the optimal angle.",
+        },
+        {
+          fr: "Partie réelle (60\u00a0%)\u00a0: orbites de l'ISS, de Hubble et de NOAA-19 récupérées via l'API N2YO, puis positions calculées minute par minute sur plusieurs jours avec Skyfield — où est le soleil, et quand le satellite passe dans l'ombre.",
+          en: "Real part (60%): orbits of the ISS, Hubble and NOAA-19 pulled from the N2YO API, then positions computed minute by minute over several days with Skyfield — where the sun is, and when the satellite enters the shadow.",
+        },
+        {
+          fr: "Partie simulée (40\u00a0%)\u00a0: des scénarios aléatoires pour couvrir ce que ces trois satellites ne rencontrent jamais — orbite géostationnaire, sol lunaire, soleil au zénith, températures extrêmes. Poussière et température sont simulées pour chaque exemple.",
+          en: "Simulated part (40%): random scenarios to cover what those three satellites never meet — geostationary orbit, lunar ground, sun at the zenith, extreme temperatures. Dust and temperature are simulated for every example.",
+        },
+        {
+          fr: "Étiquetage par la physique\u00a0: pour chaque exemple, 361 inclinaisons testées (de 0° à 180°, par pas de 0,5°)\u00a0; on garde celle qui maximise l'énergie (cosinus de l'angle au soleil × pertes dues à la poussière × rendement thermique), puis on ajoute un bruit de ±0,5° pour imiter une vraie mesure.",
+          en: "Labelling with physics: for each example, 361 tilts are tested (0° to 180° in 0.5° steps); the one that maximises energy wins (cosine of the angle to the sun × dust losses × thermal efficiency), then ±0.5° of noise is added to mimic a real measurement.",
+        },
+        {
+          fr: "Modèle hybride\u00a0: la physique fournit le point de départ (90° − élévation) et un ExtraTrees de 100 arbres n'apprend que la correction due à la poussière et à la chaleur\u00a0; quand les arbres divergent, la marge d'incertitude grandit.",
+          en: "Hybrid model: physics gives the starting point (90° − elevation) and a 100-tree ExtraTrees only learns the correction for dust and heat; when the trees disagree, the uncertainty margin grows.",
+        },
+      ],
+      architecture: {
+        fr: "Orbites réelles (API N2YO, Skyfield) et scénarios simulés → 40\u202f000 exemples étiquetés par la physique → modèle hybride (90° − élévation + correction ExtraTrees) → angle transmis au bras robotisé qui oriente le panneau.",
+        en: "Real orbits (N2YO API, Skyfield) and simulated scenarios → 40,000 examples labelled by physics → hybrid model (90° − elevation + ExtraTrees correction) → angle sent to the robotic arm that turns the panel.",
+      },
+      results: [
+        {
+          fr: "Modèle hybride\u00a0: 99\u00a0% des prédictions à ±2°, contre 92\u00a0% pour un modèle qui apprend tout seul.",
+          en: "Hybrid model: 99% of predictions within ±2°, versus 92% for a model that learns everything on its own.",
+        },
+        {
+          fr: "Quatre algorithmes comparés (Random Forest, ExtraTrees, Gradient Boosting, Random Forest sur la correction)\u00a0: ExtraTrees, le plus précis et le plus rapide.",
+          en: "Four algorithms compared (Random Forest, ExtraTrees, Gradient Boosting, Random Forest on the correction): ExtraTrees was the most accurate and the fastest.",
+        },
+        {
+          // TODO(saad): ton document dit aussi « moitié réels, moitié simulés » — 60/40 retenu (détail chiffré).
+          fr: "Jeu d'entraînement de 40\u202f000 exemples\u00a0: 60\u00a0% issus d'orbites réelles, 40\u00a0% simulés.",
+          en: "A 40,000-example training set: 60% from real orbits, 40% simulated.",
+        },
+      ],
+      learned: [
+        {
+          fr: "Quand le terrain réel est inaccessible, mélanger mesures réelles et simulation pour couvrir aussi les cas que le réel ne montre jamais.",
+          en: "When the real field is out of reach, mix real measurements with simulation to also cover the cases reality never shows.",
+        },
+        {
+          fr: "Laisser la physique gérer l'essentiel et concentrer l'IA sur les cas difficiles\u00a0: c'est ce qui fait passer de 92\u00a0% à 99\u00a0% de prédictions à ±2°.",
+          en: "Let physics handle the bulk and focus the AI on the hard cases: that's what takes predictions within ±2° from 92% to 99%.",
+        },
+      ],
+    },
+  },
+  {
     slug: "autoloc-ia",
     title: { fr: "AutoLoc — Location de voitures avec IA", en: "AutoLoc — AI-assisted car rental" },
     subtitle: {

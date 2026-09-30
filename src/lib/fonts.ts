@@ -1,19 +1,25 @@
-import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Big_Shoulders, DM_Mono, Instrument_Sans } from "next/font/google";
 
-export const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
+/** Text and UI. */
+export const body = Instrument_Sans({ subsets: ["latin"], variable: "--font-body", display: "swap" });
 
-export const spaceGrotesk = Space_Grotesk({
+/** Condensed poster display — variable weight (animated in the hero) and optical sizes. */
+export const poster = Big_Shoulders({
   subsets: ["latin"],
-  variable: "--font-space-grotesk",
+  variable: "--font-poster",
   display: "swap",
-  weight: ["500", "600", "700"],
+  axes: ["opsz"],
+  // next/font has no metrics for this family: fall back on condensed system faces instead.
+  adjustFontFallback: false,
+  fallback: ["Impact", "Arial Narrow", "sans-serif"],
 });
 
-export const jetbrains = JetBrains_Mono({
+/** Technical labels and readouts. */
+export const mono = DM_Mono({
   subsets: ["latin"],
-  variable: "--font-jetbrains",
+  variable: "--font-code",
   display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500"],
 });
 
-export const fontVariables = `${inter.variable} ${spaceGrotesk.variable} ${jetbrains.variable}`;
+export const fontVariables = `${body.variable} ${poster.variable} ${mono.variable}`;

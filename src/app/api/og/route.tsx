@@ -21,8 +21,8 @@ export async function GET(request: Request) {
           width: "100%",
           height: "100%",
           display: "flex",
-          background: "linear-gradient(135deg, #07090f 0%, #0e1320 55%, #141b2d 100%)",
-          color: "#e7ebf3",
+          background: "linear-gradient(135deg, #070606 0%, #110c0c 55%, #1a0f0f 100%)",
+          color: "#f6f3f2",
           fontFamily: "sans-serif",
           padding: 64,
           position: "relative",
@@ -36,35 +36,23 @@ export async function GET(request: Request) {
             width: 700,
             height: 700,
             borderRadius: 9999,
-            background: "radial-gradient(closest-side, rgba(59,130,246,0.35), rgba(59,130,246,0))",
+            background: "radial-gradient(closest-side, rgba(255,61,46,0.3), rgba(255,61,46,0))",
           }}
         />
         <div style={{ display: "flex", flexDirection: "column", flex: 1, justifyContent: "space-between", paddingRight: 48 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-            <div
-              style={{
-                display: "flex",
-                width: 56,
-                height: 56,
-                borderRadius: 14,
-                alignItems: "center",
-                justifyContent: "center",
-                background: "linear-gradient(120deg, #2563eb, #4f46e5)",
-                fontSize: 20,
-                fontWeight: 700,
-                color: "white",
-              }}
-            >
-              SSI
+            <div style={{ display: "flex", alignItems: "flex-end", gap: 6, fontSize: 40, fontWeight: 700, letterSpacing: 1 }}>
+              SAAD
+              <div style={{ width: 11, height: 11, borderRadius: 9999, background: "#ff3d2e", marginBottom: 9 }} />
             </div>
-            <div style={{ display: "flex", fontSize: 24, color: "#9aa6ba" }}>Portfolio · Data & IA</div>
+            <div style={{ display: "flex", fontSize: 24, color: "#ada5a3" }}>Portfolio · Data & IA</div>
           </div>
 
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", fontSize: title.length > 40 ? 58 : 72, fontWeight: 700, lineHeight: 1.05, letterSpacing: -2 }}>
               {title}
             </div>
-            <div style={{ display: "flex", marginTop: 20, fontSize: 30, color: "#6aa8ff", lineHeight: 1.3 }}>{subtitle}</div>
+            <div style={{ display: "flex", marginTop: 20, fontSize: 30, color: "#ff5c4d", lineHeight: 1.3 }}>{subtitle}</div>
           </div>
 
           <div style={{ display: "flex" }}>
@@ -92,7 +80,7 @@ export async function GET(request: Request) {
             display: "flex",
             padding: 4,
             borderRadius: 32,
-            background: "linear-gradient(135deg, #3b82f6, #22d3ee, #8b5cf6)",
+            background: "linear-gradient(135deg, #ff8a3d, #ff3d2e, #b3121f)",
             alignSelf: "center",
           }}
         >

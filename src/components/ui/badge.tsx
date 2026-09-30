@@ -12,6 +12,7 @@ const badgeVariants = cva(
         success: "border-success/30 bg-success-bg px-2.5 py-1 text-success",
         warning: "border-warning/30 bg-warning-bg px-2.5 py-1 text-warning",
         violet: "border-accent-3/30 bg-accent-3/10 px-2.5 py-1 text-fg",
+        bronze: "border-bronze/35 bg-bronze/10 px-2.5 py-1 text-bronze",
       },
     },
     defaultVariants: { variant: "default" },

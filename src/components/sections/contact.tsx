@@ -30,7 +30,7 @@ export async function Contact() {
   const link = "hover:text-accent-fg underline-offset-4 hover:underline";
 
   return (
-    <Section id="contact" eyebrow={t("eyebrow")} title={<span className="text-gradient">{t("title")}</span>} subtitle={t("subtitle")} glow="left">
+    <Section id="contact" eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} glow="left" scene="contact">
       <div className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
         <Reveal className="rounded-3xl border border-border bg-surface p-6 shadow-card sm:p-8">
           <ContactForm />

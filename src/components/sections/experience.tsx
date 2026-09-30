@@ -14,13 +14,13 @@ export async function Experience() {
   const locale = await getLocale();
 
   return (
-    <Section id="experience" eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} glow="right">
+    <Section id="experience" eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} glow="right" scene="experience">
       <TimelineProgress>
-        <ol className="relative flex flex-col gap-10 md:gap-6">
+        <ol className="relative flex flex-col gap-10 md:gap-8">
           {experiences.map((exp, i) => {
             const right = i % 2 === 1;
             return (
-              <li key={exp.id} className={cn("relative grid md:grid-cols-2 md:gap-16", i > 0 && "md:-mt-24")}>
+              <li key={exp.id} className="relative grid md:grid-cols-2 md:gap-16">
                 {/* Node on the line */}
                 <span
                   aria-hidden
@@ -48,7 +48,7 @@ export async function Experience() {
                       </span>
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-2">
-                          <h3 className="font-display text-xl font-semibold tracking-tight">
+                          <h3 className="font-display text-3xl leading-none font-extrabold uppercase">
                             {exp.company}
                             {exp.brand ? <span className="text-muted"> · {exp.brand}</span> : null}
                           </h3>

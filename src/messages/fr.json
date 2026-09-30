@@ -8,8 +8,10 @@
   },
   "nav": {
     "about": "À propos",
+    "method": "Méthode",
     "experience": "Expérience",
     "projects": "Projets",
+    "distinctions": "Distinctions",
     "skills": "Compétences",
     "github": "GitHub",
     "education": "Formation",
@@ -45,19 +47,36 @@
     "viewProjects": "Voir mes projets",
     "scroll": "Défiler",
     "portraitAlt": "Portrait de Saad Sabir Idrissi en costume bleu marine lors d'un forum de recrutement",
+    "holoCursor": "Disperser",
+    "holoHintTouch": "Glissez · touchez",
+    "holoHint": "Bougez la souris · cliquez",
+    "scanLabel": "Reconstruction 3D",
     "socials": "Réseaux et contact"
+  },
+  "opening": {
+    "skip": "Passer l'intro",
+    "portfolio": "Portfolio",
+    "tagline": "Data · BI · IA"
+  },
+  "cursor": {
+    "view": "Voir",
+    "open": "Ouvrir"
+  },
+  "lights": {
+    "hint": "Lumières éteintes : votre curseur est la lampe. Échap pour rallumer."
   },
   "stats": {
     "label": "Chiffres clés",
     "experiences": "expériences en entreprise",
     "projects": "projets réalisés",
     "certifications": "certifications",
+    "awards": "compétition & hackathons",
     "languages": "langues",
     "degrees": "diplômes (Maroc / Chine)"
   },
   "about": {
     "eyebrow": "À propos",
-    "title": "La donnée, de la source à la décision",
+    "title": "La donnée, *de la source à la décision*",
     "bringTitle": "Ce que j'apporte",
     "lookingTitle": "Ce que je recherche",
     "type": "Type",
@@ -68,9 +87,25 @@
     "tldrTitle": "En bref, pour les recruteurs",
     "qualities": "Qualités"
   },
+  "marquee": {
+    "label": "Domaines et outils"
+  },
+  "method": {
+    "eyebrow": "Méthode",
+    "title": "De la donnée brute *à la décision*",
+    "subtitle": "Cinq étapes que j'ai toutes pratiquées, en entreprise ou en projet.",
+    "step": "Étape {n}",
+    "proof": "Là où je l'ai fait",
+    "visualLabel": "Animation : des fichiers sources passent par l'ETL, s'organisent en entrepôt en étoile, deviennent un dashboard puis une recommandation validée.",
+    "fact": "Faits",
+    "dim": "Dim",
+    "kpi": "KPI",
+    "recommendation": "Recommandation",
+    "validated": "Validé"
+  },
   "experience": {
     "eyebrow": "Parcours",
-    "title": "Expérience professionnelle",
+    "title": "Expérience *professionnelle*",
     "subtitle": "De l'analyse commerciale chez Renault aux dashboards Power BI : la donnée au service des équipes métier.",
     "data": "Data",
     "kind": {
@@ -82,18 +117,18 @@
   },
   "projects": {
     "eyebrow": "Réalisations",
-    "title": "Projets sélectionnés",
-    "subtitle": "Entrepôts de données, IA appliquée et infrastructure cloud : chaque projet est présenté tel qu'il est, avec mon rôle réel.",
+    "title": "Projets *sélectionnés*",
+    "subtitle": "Entrepôts de données, IA appliquée et cloud : chaque projet avec mon rôle réel.",
     "filterLabel": "Filtrer les projets par catégorie",
     "others": "Autres projets",
     "caseStudy": "Étude de cas",
     "github": "GitHub",
     "viewCode": "Voir le code",
-    "codeSoon": "Code bientôt disponible",
     "done": "Terminé",
     "inProgress": "En cours",
     "exploreGithub": "Explorer tout mon GitHub",
     "team": "Équipe de {count}",
+    "teamProject": "Projet d'équipe",
     "empty": "Aucun projet dans cette catégorie pour l'instant.",
     "count": "{count, plural, one {# projet} other {# projets}}",
     "diagram": "Schéma d'architecture : {project}"
@@ -113,15 +148,56 @@
     "next": "Projet suivant",
     "date": "Date",
     "status": "Statut",
-    "category": "Catégorie"
+    "category": "Catégorie",
+    "demo": "Démo interactive",
+    "demoHint": "Faites varier la poussière et la chaleur : c'est la part que l'IA apprend à corriger."
+  },
+  "distinctions": {
+    "eyebrow": "Distinctions & engagement",
+    "title": "Compétitions, hackathons *et engagement*",
+    "subtitle": "Ce que je fais en dehors des cours : des compétitions, des hackathons et deux associations.",
+    "competition": "Compétition",
+    "hackathon": "Hackathon",
+    "leadership": "Engagement associatif",
+    "ordinal": "{rank, select, 1 {re} other {e}}",
+    "caseStudy": "Étude de cas",
+    "illustration": "Illustration du principe, données fictives",
+    "supplier": "Fournisseur {name}",
+    "part": "Réf. {n}",
+    "parts": "Références de pièces",
+    "bestPrice": "Meilleur prix",
+    "trackLabel": "Animation : une voiture autonome boucle un circuit en huit",
+    "boardLabel": "Illustration : fournisseurs classés par prix, le moins cher mis en avant"
+  },
+  "solar": {
+    "label": "Simulation : un satellite fait le tour de la Terre, oriente son panneau solaire vers le soleil, puis le replie dans l'ombre",
+    "play": "Lancer l'orbite",
+    "pause": "Mettre en pause",
+    "position": "Position sur l'orbite",
+    "dust": "Poussière",
+    "temperature": "Température",
+    "sunlit": "au soleil",
+    "shadow": "dans l'ombre",
+    "elevation": "Hauteur du soleil",
+    "angle": "Angle physique",
+    "fold": "repli",
+    "rule": "angle = 90° − élévation",
+    "correction": "Correction IA",
+    "correctionNone": "aucune",
+    "correctionDust": "incliner davantage",
+    "correctionHeat": "se détourner du soleil",
+    "note": "Vue 2D simplifiée de la règle physique. Ce ne sont pas les prédictions du modèle entraîné.",
+    "sun": "Soleil",
+    "earth": "Terre"
   },
   "skills": {
     "eyebrow": "Compétences",
-    "title": "Un graphe de compétences, pas une liste",
-    "subtitle": "Survolez ou sélectionnez une compétence pour voir où je l'ai réellement utilisée.",
+    "title": "Mes compétences, *là où elles ont servi*",
+    "subtitle": "Survolez ou sélectionnez une compétence pour voir où je l'ai utilisée.",
     "usedAt": "Utilisé chez {companies}",
     "usedIn": "{count, plural, one {Utilisé dans # projet} other {Utilisé dans # projets}}",
     "certified": "Certifié · {issuers}",
+    "competed": "Compétition · {events}",
     "learning": "Formation académique",
     "usageTitle": "Projets, expériences et certifications",
     "hint": "Astuce : survolez un élément à droite pour voir ses compétences.",
@@ -130,7 +206,7 @@
   },
   "github": {
     "eyebrow": "Open source",
-    "title": "Activité GitHub",
+    "title": "Activité *GitHub*",
     "subtitle": "Données publiques de mon profil, mises à jour automatiquement toutes les heures.",
     "repos": "dépôts publics",
     "languages": "Langages principaux (par dépôt)",
@@ -141,7 +217,7 @@
   },
   "education": {
     "eyebrow": "Formation",
-    "title": "Un parcours ingénieur international",
+    "title": "Un parcours ingénieur *international*",
     "subtitle": "Une formation d'ingénieur au Maroc, complétée par une double diplomation en Big Data en Chine.",
     "ongoing": "En cours",
     "doubleDegree": "Double diplôme Maroc / Chine"
@@ -150,13 +226,12 @@
     "eyebrow": "Certifications & langues",
     "title": "Certifications",
     "verify": "Vérifier",
-    "competition": "Compétition",
     "certification": "Certification",
     "languagesTitle": "Langues"
   },
   "contact": {
     "eyebrow": "Contact",
-    "title": "Travaillons ensemble",
+    "title": "Travaillons *ensemble*",
     "subtitle": "Un stage PFE en Data, BI ou IA ? Une question sur un projet ? Je réponds rapidement.",
     "name": "Nom complet",
     "email": "Email professionnel",
@@ -194,6 +269,12 @@
     "addContactHint": "Télécharge une fiche vCard (.vcf)",
     "mailSubject": "[{type}] Contact depuis le portfolio — {name}"
   },
+  "finale": {
+    "eyebrow": "Fin de la projection",
+    "title": "Un stage PFE en data, BI ou IA ? *Parlons-en.*",
+    "contact": "Me contacter",
+    "recruiter": "Profil en une page"
+  },
   "footer": {
     "tagline": "Élève ingénieur Data & IA — à la recherche d'un stage PFE.",
     "quickLinks": "Liens rapides",
@@ -221,18 +302,23 @@
     "recruiter": "Ouvrir le mode recruteur",
     "cursorOn": "Activer le curseur personnalisé",
     "cursorOff": "Désactiver le curseur personnalisé",
-    "tip": "Astuce : tapez « saad »…"
+    "lightsOff": "Éteindre les lumières (mode lampe torche)",
+    "tip": "Astuce : tapez « saad »…",
+    "replayOpening": "Rejouer l'ouverture"
   },
   "terminal": {
     "title": "saad@portfolio: ~",
     "close": "Fermer le terminal",
     "input": "Commande du terminal",
     "welcome": "Bienvenue ! Tapez « help » pour la liste des commandes.",
-    "help": "Commandes disponibles : help, whoami, skills, projects, contact, cv, clear, exit",
+    "help": "Commandes disponibles : help, whoami, skills, projects, awards, lights, intro, contact, cv, clear, exit",
     "notFound": "commande introuvable : {cmd}. Tapez « help ».",
     "cv": "Téléchargement du CV Data & BI…",
     "projectsIntro": "Projets mis en avant :",
-    "contactIntro": "Me contacter :"
+    "awardsIntro": "Distinctions & engagement :",
+    "contactIntro": "Me contacter :",
+    "lights": "Extinction des lumières…",
+    "opening": "Lever de rideau…"
   },
   "recruiter": {
     "eyebrow": "Mode recruteur",
@@ -244,6 +330,9 @@
     "topSkills": "Compétences clés",
     "topProjects": "Projets phares",
     "experience": "Expériences data",
+    "distinctions": "Distinctions & engagement",
+    "hackathons": "Hackathons",
+    "leadership": "Associatif",
     "contact": "Contact",
     "education": "Formation",
     "languages": "Langues",

@@ -12,7 +12,7 @@ export async function Projects() {
   const t = await getTranslations("projects");
 
   return (
-    <Section id="projects" eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} glow="left">
+    <Section id="projects" eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} glow="left" scene="projects">
       <ProjectsExplorer />
       <Reveal className="mt-14 flex justify-center">
         <Button asChild variant="secondary" size="lg">

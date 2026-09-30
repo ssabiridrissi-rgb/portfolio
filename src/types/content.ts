@@ -13,7 +13,6 @@ export type CvLink = { href: string; label: Localized; description: Localized };
 
 export type Profile = {
   name: string;
-  initials: string;
   title: Localized;
   shortTitle: Localized;
   roles: Localized[];
@@ -27,6 +26,8 @@ export type Profile = {
   github: string;
   githubUser: string;
   location: Localized;
+  /** Caption on the portrait projection. */
+  coordinates: string;
   mobility: Localized;
   drivingLicense: Localized;
   cvs: CvLink[];
@@ -111,7 +112,10 @@ export type ProjectCategory = "data-bi" | "ai" | "cloud-devops" | "web-backend" 
 
 export type ProjectStatus = "done" | "in-progress";
 
-export type DiagramId = "autoloc" | "aws-zabbix" | "bi-medical" | "dw-hotel" | "procuretrace";
+export type DiagramId = "autoloc" | "aws-zabbix" | "bi-medical" | "dw-hotel" | "procuretrace" | "solarnav";
+
+/** Interactive demo rendered on a case-study page. */
+export type DemoId = "solar-orbit";
 
 export type RepoLink = { name: string; href: string; summary: Localized };
 
@@ -120,7 +124,8 @@ export type Project = {
   title: Localized;
   subtitle: Localized;
   categories: ProjectCategory[];
-  date: YearMonth;
+  /** Missing → the date is simply not shown (see the TODOs in content). */
+  date?: YearMonth;
   status: ProjectStatus;
   featured: boolean;
   /** Honest framing: academic, team, lab exercise… */
@@ -130,11 +135,13 @@ export type Project = {
   skills: SkillId[];
   /** Extra stack items that are not first-class skills (libraries, services). */
   extraStack?: string[];
-  team?: { size: number; role: Localized };
+  /** `size` unknown → shown as "team project" without a head count. */
+  team?: { size?: number; role: Localized };
   links: { github?: string; demo?: string };
   /** For grouped cards (several small repos). */
   repos?: RepoLink[];
   diagram?: DiagramId;
+  demo?: DemoId;
   caseStudy?: CaseStudy;
 };
 
@@ -165,7 +172,6 @@ export type Certification = {
   id: string;
   issuer: string;
   title: Localized;
-  kind: "certification" | "competition";
   logo: Logo;
   credentialUrl?: string;
   skills: SkillId[];
@@ -177,4 +183,46 @@ export type Language = {
   /** CEFR label when one is known — never invented. */
   cefr?: string;
   native?: boolean;
+};
+
+export type AchievementKind = "competition" | "hackathon" | "leadership";
+
+/** Visual drawn at the top of an achievement card (components/distinctions). */
+export type AchievementVisual = "nxp-track" | "solar-orbit" | "supplier-board" | "medallion";
+
+/** Competitions, hackathons and student leadership. */
+export type Achievement = {
+  id: string;
+  kind: AchievementKind;
+  /** Event, project or organisation name. */
+  name: string;
+  /** Short framing: organiser, type of event or organisation. */
+  context: Localized;
+  /** One-line result or role, shown large on the card. */
+  headline: Localized;
+  role: Localized;
+  /** Missing (or missing month) → not shown. */
+  date?: { year: number; month?: number };
+  /** Final ranking, only when there is one. */
+  rank?: number;
+  /** Omitted when it would only repeat the role. */
+  summary?: Localized;
+  highlights: Localized[];
+  skills: SkillId[];
+  /** Case study with the full story. */
+  projectSlug?: string;
+  visual: AchievementVisual;
+  logo: Logo;
+};
+
+export type MethodStepId = "sources" | "etl" | "warehouse" | "dashboard" | "decision";
+
+/** One stage of the "raw data → decision" method; `skills` drive the "where I did it" proof. */
+export type MethodStep = {
+  id: MethodStepId;
+  title: Localized;
+  body: Localized;
+  skills: SkillId[];
+  /** Extra project slugs that prove the step when their `skills` can't (stack still TODO). */
+  projects?: string[];
 };

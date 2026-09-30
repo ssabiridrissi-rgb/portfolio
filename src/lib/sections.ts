@@ -1,8 +1,10 @@
 /** Home page section ids, in page order. Keys match `nav.*` messages. */
 export const SECTIONS = [
   "about",
+  "method",
   "experience",
   "projects",
+  "distinctions",
   "skills",
   "github",
   "education",
@@ -13,4 +15,4 @@ export const SECTIONS = [
 export type SectionId = (typeof SECTIONS)[number];
 
 /** The subset shown in the desktop navbar. */
-export const PRIMARY_SECTIONS: SectionId[] = ["about", "experience", "projects", "skills", "contact"];
+export const PRIMARY_SECTIONS: SectionId[] = ["about", "experience", "projects", "distinctions", "skills", "contact"];

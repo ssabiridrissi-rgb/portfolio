@@ -31,7 +31,7 @@ export function CvMenu({ variant = "secondary", size = "lg", className, align = 
         <DropdownMenu.Content
           align={align}
           sideOffset={8}
-          className="z-[70] min-w-[17rem] rounded-2xl border border-border-strong bg-surface/95 p-1.5 shadow-2xl backdrop-blur-xl"
+          className="z-[70] min-w-[17rem] rounded-2xl border border-border-strong bg-surface p-1.5 shadow-2xl"
         >
           <DropdownMenu.Label className="px-3 pt-2 pb-1.5 font-mono text-[0.68rem] tracking-widest text-subtle uppercase">
             {t("menu")}

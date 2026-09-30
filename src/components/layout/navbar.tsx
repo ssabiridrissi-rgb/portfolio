@@ -1,6 +1,6 @@
 "use client";
 
-import { Command, Menu, UserSearch, X } from "lucide-react";
+import { Command, Menu, Search, UserSearch, X } from "lucide-react";
 import { AnimatePresence, motion, useScroll, useSpring } from "motion/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
@@ -12,6 +12,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { emit, UI_EVENTS } from "@/lib/events";
 import { PRIMARY_SECTIONS, SECTIONS, type SectionId } from "@/lib/sections";
 import { cn } from "@/lib/utils";
+import { ScrambleText } from "@/components/ui/scramble-text";
 import { CvMenu } from "./cv-menu";
 import { LocaleSwitcher } from "./locale-switcher";
 import { ThemeToggle } from "./theme-toggle";
@@ -78,7 +79,7 @@ export function Navbar() {
         className={cn(
           "no-print fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-500",
           scrolled || menuOpen
-            ? "border-b border-border bg-[var(--nav-bg)] backdrop-blur-xl backdrop-saturate-150"
+            ? "border-b border-border bg-[var(--nav-bg)] backdrop-blur-md"
             : "border-b border-transparent",
         )}
       >
@@ -88,17 +89,11 @@ export function Navbar() {
           style={{ scaleX: progress }}
         />
         <nav aria-label={t("mainNav")} className="container-page flex h-16 items-center justify-between gap-4">
-          <Link
-            href="/"
-            className="group flex items-center gap-2.5 rounded-lg font-display text-[0.95rem] font-semibold tracking-tight"
-            aria-label={`${profile.name} — ${t("home")}`}
-          >
-            <span className="grid size-8 place-items-center rounded-lg bg-gradient-button font-mono text-[0.68rem] font-bold text-accent-contrast shadow-[0_0_24px_-6px_var(--glow-1)] transition-transform duration-500 ease-out-expo group-hover:rotate-[-6deg]">
-              {profile.initials}
+          <Link href="/" className="wordmark group rounded-lg" aria-label={`${profile.name} — ${t("home")}`}>
+            <span aria-hidden className="font-display text-[1.9rem] leading-none">
+              {profile.name.split(" ")[0]}
             </span>
-            <span className="hidden sm:inline">
-              Saad<span className="text-muted"> Sabir Idrissi</span>
-            </span>
+            <span aria-hidden className="wordmark-dot" />
           </Link>
 
           <ul className="hidden items-center gap-1 lg:flex">
@@ -108,7 +103,7 @@ export function Navbar() {
                   href={{ pathname: "/", hash: id }}
                   aria-current={active === id ? "location" : undefined}
                   className={cn(
-                    "relative rounded-full px-3.5 py-2 text-sm text-muted transition-colors hover:text-fg",
+                    "relative rounded-full px-3 py-2 text-sm whitespace-nowrap text-muted transition-colors hover:text-fg xl:px-3.5",
                     active === id && "text-fg",
                   )}
                 >
@@ -119,7 +114,7 @@ export function Navbar() {
                       transition={{ type: "spring", stiffness: 380, damping: 32 }}
                     />
                   ) : null}
-                  {t(id)}
+                  <ScrambleText text={t(id)} />
                 </Link>
               </li>
             ))}
@@ -132,7 +127,8 @@ export function Navbar() {
               className="hidden h-9 items-center gap-2 rounded-full border border-border bg-surface/60 pr-1.5 pl-3 text-xs text-muted transition-colors hover:border-border-strong hover:text-fg md:inline-flex"
               aria-label={t("search")}
             >
-              <span>{t("search")}</span>
+              <Search className="size-3.5" aria-hidden />
+              <span className="hidden 2xl:inline">{t("search")}</span>
               <kbd className="inline-flex items-center gap-0.5 rounded-md border border-border bg-surface-2 px-1.5 py-0.5 font-mono text-[0.65rem]">
                 {isMac ? <Command className="size-3" aria-hidden /> : "Ctrl"}
                 <span>K</span>
@@ -186,7 +182,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="no-print fixed inset-0 z-40 flex flex-col bg-bg/95 pt-20 backdrop-blur-2xl lg:hidden"
+            className="no-print fixed inset-0 z-40 flex flex-col bg-bg/[0.98] pt-20 lg:hidden"
           >
             <nav aria-label={t("mainNav")} className="container-page flex flex-1 flex-col justify-between pb-10">
               <ul className="flex flex-col">
@@ -201,7 +197,7 @@ export function Navbar() {
                     <Link
                       href={{ pathname: "/", hash: id }}
                       onClick={() => setMenuOpen(false)}
-                      className="flex items-baseline justify-between py-4 font-display text-3xl font-semibold tracking-tight"
+                      className="flex items-baseline justify-between py-4 font-display text-4xl leading-none font-extrabold uppercase"
                     >
                       {t(id)}
                       <span className="font-mono text-xs text-subtle">0{i + 1}</span>

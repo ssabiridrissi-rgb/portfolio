@@ -3,12 +3,14 @@
 import { Command } from "cmdk";
 import {
   ArrowRight,
+  Clapperboard,
   Copy,
   CornerDownLeft,
   FileText,
   FolderGit2,
   Hash,
   Languages,
+  Flashlight,
   MousePointer2,
   SunMoon,
   UserSearch,
@@ -22,11 +24,37 @@ import { BrandLogo } from "@/components/ui/brand-logo";
 import { caseStudyProjects } from "@/content/projects";
 import { profile } from "@/content/profile";
 import { usePathname, useRouter } from "@/i18n/navigation";
-import { emit, readStorage, UI_EVENTS } from "@/lib/events";
+import { emit, readStorage, replayOpening, UI_EVENTS } from "@/lib/events";
 import { SECTIONS, type SectionId } from "@/lib/sections";
+import { scrollToElement } from "@/lib/smooth-scroll";
 import { Terminal } from "./terminal";
 
 const EASTER_EGG = "saad";
+
+const normalize = (text: string) =>
+  text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+
+function isSubsequence(text: string, query: string) {
+  let i = 0;
+  for (const char of text) if (char === query[i]) i++;
+  return i === query.length;
+}
+
+/** Label first, then keywords, fuzzy last — so "lampe" finds the lights, not a project's skill list. */
+function paletteFilter(value: string, search: string, keywords?: string[]) {
+  const query = normalize(search.trim());
+  if (!query) return 1;
+  const label = normalize(value);
+  if (label.startsWith(query)) return 1;
+  if (label.includes(query)) return 0.9;
+  const keys = (keywords ?? []).map(normalize);
+  if (keys.some((k) => k.startsWith(query))) return 0.75;
+  if (keys.some((k) => k.includes(query))) return 0.5;
+  return isSubsequence(label, query) ? 0.15 : 0;
+}
 
 export function CommandPalette({ initial }: { initial: "palette" | "terminal" }) {
   const t = useTranslations("palette");
@@ -62,7 +90,7 @@ export function CommandPalette({ initial }: { initial: "palette" | "terminal" })
   }, []);
 
   useEffect(() => {
-    if (open) setCursorOn(readStorage("ssi-cursor") !== "off");
+    if (open) setCursorOn(readStorage("cursor-pref") !== "off");
     else setSearch("");
   }, [open]);
 
@@ -86,8 +114,9 @@ export function CommandPalette({ initial }: { initial: "palette" | "terminal" })
   }, []);
 
   const goToSection = (id: SectionId) => {
-    if (pathname === "/") {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const section = pathname === "/" ? document.getElementById(id) : null;
+    if (section) {
+      scrollToElement(section);
       history.replaceState(null, "", `#${id}`);
     } else {
       router.push(`/#${id}`);
@@ -110,6 +139,7 @@ export function CommandPalette({ initial }: { initial: "palette" | "terminal" })
         onOpenChange={setOpen}
         label={t("title")}
         loop
+        filter={paletteFilter}
         overlayClassName="fixed inset-0 z-[80] bg-black/50 backdrop-blur-sm"
         contentClassName="fixed top-[12vh] left-1/2 z-[81] w-[calc(100%-2rem)] max-w-xl -translate-x-1/2 overflow-hidden rounded-2xl border border-border-strong bg-surface shadow-[0_40px_120px_-20px_rgb(0_0_0/0.6)]"
       >
@@ -196,6 +226,16 @@ export function CommandPalette({ initial }: { initial: "palette" | "terminal" })
             </Item>
             <Item icon={<MousePointer2 />} keywords={["cursor", "curseur"]} onSelect={() => run(() => emit(UI_EVENTS.cursorToggle))}>
               {cursorOn ? t("cursorOff") : t("cursorOn")}
+            </Item>
+            <Item icon={<Flashlight />} keywords={["lights", "lumière", "torch", "lampe"]} onSelect={() => run(() => emit(UI_EVENTS.lightsToggle))}>
+              {t("lightsOff")}
+            </Item>
+            <Item
+              icon={<Clapperboard />}
+              keywords={["intro", "opening", "ouverture", "rideau", "curtain", "generique"]}
+              onSelect={() => run(() => replayOpening(locale))}
+            >
+              {t("replayOpening")}
             </Item>
           </Command.Group>
         </Command.List>

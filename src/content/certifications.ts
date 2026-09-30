@@ -1,11 +1,11 @@
 import type { Certification, Language } from "@/types/content";
 
+// The NXP Cup lives in content/achievements.ts (it's a competition, not a certification).
 export const certifications: Certification[] = [
   {
     id: "cisco-data-analytics",
     issuer: "Cisco",
     title: { fr: "Data Analytics Essentials", en: "Data Analytics Essentials" },
-    kind: "certification",
     logo: { icon: "cisco" },
     // TODO(saad): ajouter credentialUrl (lien Credly / Cisco NetAcad) pour afficher le bouton « Vérifier ».
     skills: ["data-analysis"],
@@ -14,7 +14,6 @@ export const certifications: Certification[] = [
     id: "alx-ai",
     issuer: "ALX",
     title: { fr: "AI Career Essentials", en: "AI Career Essentials" },
-    kind: "certification",
     logo: { monogram: "ALX" },
     skills: ["llm"],
   },
@@ -22,7 +21,6 @@ export const certifications: Certification[] = [
     id: "aws-cloud",
     issuer: "AWS",
     title: { fr: "Certification Cloud", en: "Cloud certification" },
-    kind: "certification",
     logo: { monogram: "AWS", color: "#FF9900" },
     skills: ["aws"],
   },
@@ -30,17 +28,8 @@ export const certifications: Certification[] = [
     id: "huawei-cloud",
     issuer: "Huawei",
     title: { fr: "Certification Cloud", en: "Cloud certification" },
-    kind: "certification",
     logo: { icon: "huawei" },
     skills: ["huawei-cloud"],
-  },
-  {
-    id: "nxp-cup",
-    issuer: "NXP Cup",
-    title: { fr: "Intelligent Car Racing — compétition", en: "Intelligent Car Racing — competition" },
-    kind: "competition",
-    logo: { icon: "nxp" },
-    skills: ["arduino"],
   },
 ];
 

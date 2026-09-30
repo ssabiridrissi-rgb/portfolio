@@ -2,7 +2,6 @@ import type { Profile } from "@/types/content";
 
 export const profile: Profile = {
   name: "Saad Sabir Idrissi",
-  initials: "SSI",
   title: {
     fr: "Élève Ingénieur Informatique — Data & Intelligence Artificielle",
     en: "Computer Engineering Student — Data & Artificial Intelligence",
@@ -43,6 +42,8 @@ export const profile: Profile = {
   github: "https://github.com/ssabiridrissi-rgb",
   githubUser: "ssabiridrissi-rgb",
   location: { fr: "Casablanca, Maroc", en: "Casablanca, Morocco" },
+  /** Shown on the portrait's caption. */
+  coordinates: "Casablanca · 33°34′N 7°35′W",
   // TODO(saad): préciser si tu es aussi ouvert à l'international.
   mobility: { fr: "Mobilité nationale", en: "Open to relocate within Morocco" },
   drivingLicense: { fr: "Permis B", en: "Driving licence (B)" },

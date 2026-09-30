@@ -4,10 +4,12 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import { achievements } from "@/content/achievements";
 import { experiences } from "@/content/experience";
 import { featuredProjects } from "@/content/projects";
 import { profile } from "@/content/profile";
 import { skillCategories, skills } from "@/content/skills";
+import { emit, replayOpening, UI_EVENTS } from "@/lib/events";
 
 type Line = { kind: "in" | "out"; text: string };
 
@@ -54,6 +56,11 @@ export function Terminal({ open, onOpenChange }: { open: boolean; onOpenChange: 
           t("projectsIntro"),
           ...featuredProjects.map((p) => `  • ${p.title[locale]} — ${p.subtitle[locale]}`),
         ];
+      case "awards":
+        return [
+          t("awardsIntro"),
+          ...achievements.map((a) => `  • ${a.name} — ${a.kind === "leadership" ? a.role[locale] : a.headline[locale]} (${a.context[locale]})`),
+        ];
       case "experience":
         return experiences.map((e) => `  • ${e.company} — ${e.role[locale]} (${e.start} → ${e.end})`);
       case "contact":
@@ -71,6 +78,15 @@ export function Terminal({ open, onOpenChange }: { open: boolean; onOpenChange: 
         a.click();
         return [t("cv")];
       }
+      case "lights":
+      case "lights off":
+        window.setTimeout(() => emit(UI_EVENTS.lightsToggle), 250);
+        onOpenChange(false);
+        return [t("lights")];
+      case "intro":
+      case "opening":
+        window.setTimeout(() => replayOpening(locale), 400);
+        return [t("opening")];
       case "clear":
         return "clear";
       case "exit":
@@ -113,16 +129,16 @@ export function Terminal({ open, onOpenChange }: { open: boolean; onOpenChange: 
         <Dialog.Overlay className="fixed inset-0 z-[80] bg-black/60 backdrop-blur-sm" />
         <Dialog.Content
           aria-describedby={undefined}
-          className="fixed top-1/2 left-1/2 z-[81] flex h-[min(70vh,480px)] w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-2xl border border-border-strong bg-[#05070c] font-mono text-[0.82rem] text-[#d6e2f5] shadow-[0_40px_120px_-20px_rgb(0_0_0/0.8)]"
+          className="fixed top-1/2 left-1/2 z-[81] flex h-[min(70vh,480px)] w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 -translate-y-1/2 flex-col overflow-hidden rounded-2xl border border-border-strong bg-[#0a0808] font-mono text-[0.82rem] text-[#e4dcda] shadow-[0_40px_120px_-20px_rgb(0_0_0/0.8)]"
         >
           <div className="flex items-center justify-between border-b border-white/10 px-4 py-2.5">
             <div className="flex items-center gap-2">
               <span className="size-3 rounded-full bg-[#ff5f57]" aria-hidden />
               <span className="size-3 rounded-full bg-[#febc2e]" aria-hidden />
               <span className="size-3 rounded-full bg-[#28c840]" aria-hidden />
-              <Dialog.Title className="ml-3 text-xs text-[#9fb0c8]">{t("title")}</Dialog.Title>
+              <Dialog.Title className="ml-3 text-xs text-[#a89f9c]">{t("title")}</Dialog.Title>
             </div>
-            <Dialog.Close className="rounded-md p-1 text-[#9fb0c8] hover:bg-white/10 hover:text-white" aria-label={t("close")}>
+            <Dialog.Close className="rounded-md p-1 text-[#a89f9c] hover:bg-white/10 hover:text-white" aria-label={t("close")}>
               <X className="size-4" />
             </Dialog.Close>
           </div>
@@ -131,19 +147,19 @@ export function Terminal({ open, onOpenChange }: { open: boolean; onOpenChange: 
               <p key={i} className="leading-relaxed break-words whitespace-pre-wrap">
                 {line.kind === "in" ? (
                   <>
-                    <span className="text-[#22d3ee]">saad@portfolio</span>
-                    <span className="text-[#9fb0c8]">:~$ </span>
+                    <span className="text-[#ff5c4d]">saad@portfolio</span>
+                    <span className="text-[#a89f9c]">:~$ </span>
                     {line.text}
                   </>
                 ) : (
-                  <span className="text-[#c3cee0]">{line.text}</span>
+                  <span className="text-[#d3cbc8]">{line.text}</span>
                 )}
               </p>
             ))}
             <form onSubmit={onSubmit} className="flex items-center">
               <label htmlFor="terminal-input" className="shrink-0">
-                <span className="text-[#22d3ee]">saad@portfolio</span>
-                <span className="text-[#9fb0c8]">:~$&nbsp;</span>
+                <span className="text-[#ff5c4d]">saad@portfolio</span>
+                <span className="text-[#a89f9c]">:~$&nbsp;</span>
                 <span className="sr-only">{t("input")}</span>
               </label>
               <input
@@ -155,7 +171,7 @@ export function Terminal({ open, onOpenChange }: { open: boolean; onOpenChange: 
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 onKeyDown={onKeyDown}
-                className="w-full bg-transparent text-[#f1f5fb] caret-[#22d3ee] outline-none"
+                className="w-full bg-transparent text-[#f6f3f2] caret-[#ff5c4d] outline-none"
               />
             </form>
           </div>

@@ -1,9 +1,10 @@
 "use client";
 
-import { Award, Briefcase, FolderGit2 } from "lucide-react";
+import { Award, Briefcase, FolderGit2, Trophy } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { BrandLogo } from "@/components/ui/brand-logo";
+import { achievements } from "@/content/achievements";
 import { certifications } from "@/content/certifications";
 import { experiences } from "@/content/experience";
 import { projects } from "@/content/projects";
@@ -11,7 +12,10 @@ import { skillCategories, skills } from "@/content/skills";
 import { cn } from "@/lib/utils";
 import type { SkillId } from "@/types/content";
 
-type Target = { id: string; kind: "exp" | "proj" | "cert"; label: string; sub: string; skills: SkillId[] };
+type Target = { id: string; kind: "exp" | "proj" | "award" | "cert"; label: string; sub: string; skills: SkillId[] };
+
+/** Achievements told through a project (SolarNav AI) are already listed as that project. */
+const standaloneAchievements = achievements.filter((a) => !a.projectSlug && a.skills.length);
 type Line = { d: string; key: string };
 
 const useIsoLayoutEffect = typeof window === "undefined" ? useEffect : useLayoutEffect;
@@ -33,6 +37,13 @@ export function SkillsGraph() {
       ...projects
         .filter((p) => p.skills.length)
         .map((p) => ({ id: `proj:${p.slug}`, kind: "proj" as const, label: p.title[locale], sub: p.subtitle[locale], skills: p.skills })),
+      ...standaloneAchievements.map((a) => ({
+        id: `award:${a.id}`,
+        kind: "award" as const,
+        label: a.name,
+        sub: a.headline[locale],
+        skills: a.skills,
+      })),
       ...certifications.map((c) => ({
         id: `cert:${c.id}`,
         kind: "cert" as const,
@@ -50,9 +61,11 @@ export function SkillsGraph() {
       const companies = experiences.filter((e) => e.skills.includes(s.id)).map((e) => e.company);
       const count = projects.filter((p) => p.skills.includes(s.id)).length;
       const issuers = certifications.filter((c) => c.skills.includes(s.id)).map((c) => c.issuer);
+      const events = standaloneAchievements.filter((a) => a.skills.includes(s.id)).map((a) => a.name);
       const parts: string[] = [];
       if (companies.length) parts.push(t("usedAt", { companies: companies.join(", ") }));
       if (count) parts.push(t("usedIn", { count }));
+      if (events.length) parts.push(t("competed", { events: events.join(", ") }));
       if (issuers.length) parts.push(t("certified", { issuers: issuers.join(", ") }));
       if (parts.length) map.set(s.id, parts.join(" · "));
     }
@@ -120,7 +133,7 @@ export function SkillsGraph() {
     };
   }, [measure, focusMode]);
 
-  const kindIcon = { exp: Briefcase, proj: FolderGit2, cert: Award } as const;
+  const kindIcon = { exp: Briefcase, proj: FolderGit2, award: Trophy, cert: Award } as const;
 
   return (
     <div ref={containerRef} className="relative grid gap-8 lg:grid-cols-[1fr_minmax(300px,360px)] lg:gap-24">
@@ -137,7 +150,7 @@ export function SkillsGraph() {
         {skillCategories.map((cat) => {
           const items = skills.filter((s) => s.category === cat.id);
           return (
-            <div key={cat.id} className="rounded-3xl border border-border bg-surface/70 p-5 backdrop-blur">
+            <div key={cat.id} className="rounded-3xl border border-border bg-surface p-5">
               <h3 className="mb-3.5 flex items-center justify-between font-mono text-[0.7rem] tracking-widest text-subtle uppercase">
                 {cat.label[locale]}
                 <span className="rounded-full bg-surface-2 px-2 py-0.5 text-[0.65rem]">{items.length}</span>

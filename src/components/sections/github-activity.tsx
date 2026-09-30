@@ -51,9 +51,9 @@ async function Activity() {
             </span>
             <div>
               <p className="font-mono text-sm text-muted">@{data.profileUrl.split("/").pop()}</p>
-              <p className="font-display text-4xl font-semibold tracking-tight">
+              <p className="font-display text-5xl leading-none font-extrabold">
                 <span className="text-gradient">{data.publicRepos}</span>{" "}
-                <span className="text-base font-normal text-muted">{t("repos")}</span>
+                <span className="font-sans text-base font-normal text-muted">{t("repos")}</span>
               </p>
             </div>
           </div>
@@ -133,7 +133,7 @@ function Skeleton() {
 export async function GitHubActivity() {
   const t = await getTranslations("github");
   return (
-    <Section id="github" eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} glow="center">
+    <Section id="github" eyebrow={t("eyebrow")} title={t("title")} subtitle={t("subtitle")} glow="center" scene="github">
       <Suspense fallback={<Skeleton />}>
         <Activity />
       </Suspense>

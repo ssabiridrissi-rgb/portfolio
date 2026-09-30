@@ -5,6 +5,18 @@ import { getStats } from "@/lib/derived";
 import { Flag } from "@/components/ui/flag";
 import { cn } from "@/lib/utils";
 
+/** Hairlines between cells: 2 columns on phones, 3 on tablets, 6 in one row on desktop. */
+function separators(i: number) {
+  return [
+    i % 2 === 1 ? "border-l" : "border-l-0",
+    i >= 2 ? "border-t" : "border-t-0",
+    i % 3 !== 0 ? "sm:border-l" : "sm:border-l-0",
+    i >= 3 ? "sm:border-t" : "sm:border-t-0",
+    i > 0 ? "lg:border-l" : "lg:border-l-0",
+    "lg:border-t-0",
+  ].join(" ");
+}
+
 export async function Stats() {
   const t = await getTranslations("stats");
   const stats = getStats();
@@ -12,6 +24,7 @@ export async function Stats() {
   const items = [
     { value: stats.experiences, label: t("experiences") },
     { value: stats.projects, label: t("projects") },
+    { value: stats.awards, label: t("awards") },
     { value: stats.certifications, label: t("certifications") },
     { value: stats.languages, label: t("languages") },
     { value: stats.degrees, label: t("degrees"), flags: stats.degreeCountries },
@@ -20,16 +33,13 @@ export async function Stats() {
   return (
     <section aria-label={t("label")} className="relative">
       <div className="container-page">
-        <RevealGroup className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-border bg-border sm:grid-cols-3 lg:grid-cols-5">
+        <RevealGroup className="grid grid-cols-2 border-y border-border sm:grid-cols-3 lg:grid-cols-6">
           {items.map((item, i) => (
             <RevealItem
               key={item.label}
-              className={cn(
-                "flex flex-col gap-1.5 bg-surface p-6 sm:p-7",
-                i === items.length - 1 && "col-span-2 lg:col-span-1",
-              )}
+              className={cn("flex flex-col gap-2 border-border px-4 py-7 sm:px-6", separators(i))}
             >
-              <p className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+              <p className="font-display text-6xl leading-none font-extrabold sm:text-7xl">
                 <span className="text-gradient">
                   <CountUp value={item.value} />
                 </span>

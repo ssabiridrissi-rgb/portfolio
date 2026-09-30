@@ -1,4 +1,4 @@
-import { BrainCircuit, CalendarRange, Check, Clock, Cloud, Compass, Database, MapPin, Target, Zap } from "lucide-react";
+import { BrainCircuit, CalendarRange, Check, Clock, Cloud, Compass, Database, MapPin, Target } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { BrandLogo } from "@/components/ui/brand-logo";
 import { RevealGroup, RevealItem, Reveal } from "@/components/ui/reveal";
@@ -22,7 +22,7 @@ export async function About() {
   ];
 
   return (
-    <Section id="about" eyebrow={t("eyebrow")} title={t("title")} glow="left">
+    <Section id="about" eyebrow={t("eyebrow")} title={t("title")} glow="left" scene="about">
       <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
         <Reveal className="space-y-5 text-lead text-pretty text-muted">
           {profile.about.map((paragraph, i) => (
@@ -42,10 +42,7 @@ export async function About() {
 
         <Reveal delay={0.1} className="relative overflow-hidden rounded-3xl border border-accent/25 bg-surface p-6 shadow-card sm:p-8">
           <div aria-hidden className="absolute -top-24 -right-24 size-56 rounded-full bg-[radial-gradient(closest-side,var(--glow-1),transparent)]" />
-          <h3 className="flex items-center gap-2 font-mono text-xs tracking-widest text-accent-fg uppercase">
-            <Zap className="size-4" aria-hidden />
-            {t("tldrTitle")}
-          </h3>
+          <h3 className="font-display text-3xl leading-none font-extrabold text-fg uppercase">{t("tldrTitle")}</h3>
           <ul className="mt-5 space-y-3.5">
             {profile.tldr.map((line) => (
               <li key={line.fr} className="flex gap-3 text-[0.95rem] leading-relaxed">
@@ -85,7 +82,7 @@ export async function About() {
       </RevealGroup>
 
       <Reveal className="mt-4 rounded-3xl border border-border bg-[linear-gradient(135deg,var(--surface),var(--surface-2))] p-6 sm:p-8">
-        <h3 className="font-display text-xl font-semibold">{t("lookingTitle")}</h3>
+        <h3 className="font-display text-3xl leading-none font-extrabold uppercase">{t("lookingTitle")}</h3>
         <dl className="mt-6 grid gap-x-8 gap-y-5 sm:grid-cols-2 lg:grid-cols-5">
           {looking.map(({ icon: Icon, label, value }) => (
             <div key={label} className="flex flex-col gap-1.5">

@@ -1,74 +1,97 @@
 "use client";
 
-import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useEffect, useRef, useState, type PointerEvent } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import portrait from "../../../public/images/saad-portrait.jpg";
 
-/** Portrait in an animated gradient frame with a subtle 3D tilt (desktop, motion allowed only). */
-export function Portrait({ alt, children }: { alt: string; children?: React.ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const reduced = useReducedMotion();
-  const [canTilt, setCanTilt] = useState(false);
-  const px = useMotionValue(0.5);
-  const py = useMotionValue(0.5);
-  const rotateX = useSpring(useTransform(py, [0, 1], [7, -7]), { stiffness: 160, damping: 18 });
-  const rotateY = useSpring(useTransform(px, [0, 1], [-9, 9]), { stiffness: 160, damping: 18 });
-  const glare = useTransform(
-    [px, py],
-    ([x, y]) => `radial-gradient(circle at ${Number(x) * 100}% ${Number(y) * 100}%, rgb(255 255 255 / 0.35), transparent 55%)`,
-  );
+const Hologram = dynamic(() => import("@/components/portrait/hologram").then((m) => m.Hologram), { ssr: false });
 
+const CORNERS = [
+  "top-3 left-3 border-t border-l",
+  "top-3 right-3 border-t border-r",
+  "bottom-3 left-3 border-b border-l",
+  "bottom-3 right-3 border-b border-r",
+];
+
+/**
+ * The portrait: a framed photograph (LCP element, and the fallback without WebGL) that rebuilds itself as a
+ * 3D point cloud once the page is idle — the frame dissolves and the bust floats over a red emitter.
+ */
+export function Portrait({
+  alt,
+  children,
+  place,
+  hintPointer,
+  hintTouch,
+  cursorLabel,
+  scanLabel,
+  locale,
+}: {
+  alt: string;
+  children?: ReactNode;
+  place: string;
+  hintPointer: string;
+  hintTouch: string;
+  cursorLabel: string;
+  scanLabel: string;
+  locale: string;
+}) {
+  const [load, setLoad] = useState(false);
+  const [points, setPoints] = useState<number | null>(null);
+
+  // The 3D engine stays out of the critical path: downloaded once the browser is idle.
   useEffect(() => {
-    setCanTilt(window.matchMedia("(pointer: fine) and (hover: hover)").matches);
+    const go = () => setLoad(true);
+    if (typeof window.requestIdleCallback === "function") {
+      const id = window.requestIdleCallback(go, { timeout: 1500 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const id = window.setTimeout(go, 600);
+    return () => window.clearTimeout(id);
   }, []);
 
-  const tilt = canTilt && !reduced;
-
-  const onMove = (e: PointerEvent<HTMLDivElement>) => {
-    if (!tilt || !ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    px.set((e.clientX - rect.left) / rect.width);
-    py.set((e.clientY - rect.top) / rect.height);
-  };
-  const onLeave = () => {
-    px.set(0.5);
-    py.set(0.5);
-  };
+  const on = points !== null;
 
   return (
-    <div className="relative [perspective:1200px]">
-      <motion.div
-        ref={ref}
-        onPointerMove={onMove}
-        onPointerLeave={onLeave}
-        style={tilt ? { rotateX, rotateY, transformStyle: "preserve-3d" } : undefined}
-        className="relative mx-auto w-full max-w-[400px]"
-      >
-        <div aria-hidden className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-[radial-gradient(closest-side,var(--glow-1),transparent)]" />
-        <div className="gradient-frame rounded-[2rem] p-[1.5px] shadow-[0_30px_80px_-30px_var(--glow-1)]">
-          <div className="relative overflow-hidden rounded-[calc(2rem-1.5px)] bg-surface">
+    <div data-holo={on ? "on" : undefined} className="portrait relative mx-auto w-full max-w-[420px]">
+      <div aria-hidden className="absolute -inset-16 -z-10 rounded-full bg-[radial-gradient(closest-side,var(--glow-1),transparent)]" />
+      <div className="portrait-frame relative rounded-[1.6rem] border border-accent/25 bg-surface p-2 shadow-[0_50px_120px_-50px_rgb(0_0_0/0.85)]">
+        <div data-cursor={cursorLabel} className="relative touch-pan-y">
+          <div className="portrait-box relative overflow-hidden rounded-[1.15rem] bg-surface-2">
             <Image
               src={portrait}
               alt={alt}
               priority
               placeholder="blur"
-              sizes="(min-width: 1024px) 400px, (min-width: 640px) 60vw, 85vw"
-              className="aspect-[4/5] h-auto w-full object-cover"
-              style={{ objectPosition: "50% 20%" }}
+              sizes="(min-width: 1024px) 420px, (min-width: 640px) 60vw, 85vw"
+              className="portrait-photo aspect-[4/5] h-auto w-full object-cover"
             />
-            <div aria-hidden className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgb(7_9_15/0.55))]" />
-            {tilt ? (
-              <motion.div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 opacity-60 mix-blend-soft-light"
-                style={{ background: glare }}
-              />
-            ) : null}
+          </div>
+          <div aria-hidden className="holo-emitter pointer-events-none absolute inset-x-[6%] -bottom-7 h-14" />
+          {load ? <Hologram className="holo-canvas absolute" onState={setPoints} /> : null}
+          {CORNERS.map((c) => (
+            <span key={c} aria-hidden className={`pointer-events-none absolute size-4 border-accent/80 ${c}`} />
+          ))}
+          <div
+            aria-hidden
+            className="portrait-scan pointer-events-none absolute top-3.5 left-9 flex items-center gap-2 font-mono text-[0.6rem] tracking-wider whitespace-nowrap text-muted uppercase"
+          >
+            <span className="size-1.5 animate-pulse rounded-full bg-accent" />
+            {scanLabel}
+            {points ? <span className="text-subtle">· {points.toLocaleString(locale)} pts</span> : null}
           </div>
         </div>
-        {children}
-      </motion.div>
+      </div>
+      <div
+        aria-hidden
+        className="mt-6 flex items-center justify-between gap-3 px-1 font-mono text-[0.6rem] tracking-wider whitespace-nowrap text-subtle uppercase"
+      >
+        <span>{place}</span>
+        <span className="hidden pointer-fine:inline">{hintPointer}</span>
+        <span className="pointer-fine:hidden">{hintTouch}</span>
+      </div>
+      {children}
     </div>
   );
 }

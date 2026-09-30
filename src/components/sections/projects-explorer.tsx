@@ -7,7 +7,8 @@ import { EASE } from "@/lib/motion";
 import { featuredProjects, otherProjects, projectCategories } from "@/content/projects";
 import { cn } from "@/lib/utils";
 import type { ProjectCategory } from "@/types/content";
-import { CompactProjectCard, FeaturedProjectCard } from "./project-card";
+import { OtherProjectsIndex } from "./other-projects-index";
+import { FeaturedProjectCard } from "./project-card";
 
 type Filter = ProjectCategory | "all";
 
@@ -69,7 +70,10 @@ export function ProjectsExplorer() {
       <motion.div layout className="grid gap-4 lg:grid-cols-2">
         <AnimatePresence mode="popLayout" initial={false}>
           {featured.map((project, i) => {
-            const large = filter === "all" && i === 0;
+            // The first card is wide on "all"; a last card left alone on its row goes wide too.
+            const lead = filter === "all" ? 1 : 0;
+            const orphan = i === featured.length - 1 && i >= lead && (featured.length - lead) % 2 === 1;
+            const large = (filter === "all" && i === 0) || orphan;
             return (
               <motion.div key={project.slug} {...cardMotion} className={cn(large && "lg:col-span-2")}>
                 <FeaturedProjectCard project={project} large={large} />
@@ -82,16 +86,11 @@ export function ProjectsExplorer() {
       <AnimatePresence initial={false}>
         {others.length ? (
           <motion.div key="others" layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <h3 className="mt-16 mb-6 font-mono text-xs tracking-widest text-subtle uppercase">{t("others")}</h3>
-            <motion.div layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              <AnimatePresence mode="popLayout" initial={false}>
-                {others.map((project) => (
-                  <motion.div key={project.slug} {...cardMotion}>
-                    <CompactProjectCard project={project} />
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </motion.div>
+            <h3 className="mt-20 mb-4 flex items-baseline justify-between font-display text-4xl font-extrabold uppercase">
+              <span className="text-accent-fg">{t("others")}</span>
+              <span className="font-mono text-xs text-subtle">{String(others.length).padStart(2, "0")}</span>
+            </h3>
+            <OtherProjectsIndex projects={others} />
           </motion.div>
         ) : null}
       </AnimatePresence>

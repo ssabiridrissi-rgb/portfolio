@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import type { ReactNode } from "react";
 import { PrintButton } from "@/components/layout/print-button";
 import { BrandLogo } from "@/components/ui/brand-logo";
+import { achievements } from "@/content/achievements";
 import { certifications, languages } from "@/content/certifications";
 import { education } from "@/content/education";
 import { experiences } from "@/content/experience";
@@ -46,13 +47,16 @@ export default async function RecruiterPage({ params }: Props) {
   const t = await getTranslations("recruiter");
   const dataExperiences = experiences.filter((e) => e.isData);
   const topProjects = TOP_PROJECTS.map((slug) => getProject(slug)).filter((p) => p !== undefined);
+  const competitions = achievements.filter((a) => a.kind === "competition");
+  const hackathons = achievements.filter((a) => a.kind === "hackathon");
+  const leadership = achievements.filter((a) => a.kind === "leadership");
 
   return (
     <div className="container-page pt-24 pb-16 print:max-w-none print:p-0">
       <div className="no-print mb-8 flex flex-wrap items-center justify-between gap-4">
         <div>
           <p className="font-mono text-xs tracking-[0.2em] text-accent-fg uppercase">{t("eyebrow")}</p>
-          <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight">{t("title")}</h1>
+          <h1 className="mt-2 font-display text-4xl leading-none font-extrabold uppercase">{t("title")}</h1>
         </div>
         <div className="flex flex-wrap gap-2">
           <Link href="/" className="inline-flex h-11 items-center gap-2 rounded-full border border-border px-5 text-sm text-muted hover:text-fg">
@@ -63,11 +67,11 @@ export default async function RecruiterPage({ params }: Props) {
         </div>
       </div>
 
-      <article className="mx-auto max-w-[210mm] rounded-3xl border border-border bg-surface p-6 text-[0.9rem] shadow-card sm:p-10 print:rounded-none print:border-0 print:p-0 print:shadow-none">
-        <header className="flex flex-col gap-6 border-b border-border pb-6 sm:flex-row sm:items-center">
-          <Image src={portrait} alt="" width={96} height={120} className="h-[120px] w-24 rounded-2xl object-cover" placeholder="blur" />
+      <article className="mx-auto max-w-[210mm] rounded-3xl border border-border bg-surface p-6 text-[0.9rem] shadow-card sm:p-10 print:rounded-none print:border-0 print:p-0 print:text-[9.6pt] print:shadow-none">
+        <header className="flex flex-col gap-6 border-b border-border pb-6 sm:flex-row sm:items-center print:pb-4">
+          <Image src={portrait} alt="" width={96} height={120} className="h-[120px] w-24 rounded-2xl object-cover print:h-[104px] print:w-[84px]" placeholder="blur" />
           <div className="flex-1">
-            <h2 className="font-display text-3xl font-semibold tracking-tight">{profile.name}</h2>
+            <h2 className="font-display text-4xl leading-none font-extrabold uppercase">{profile.name}</h2>
             <p className="mt-1 text-[0.95rem] text-fg/90">{profile.title[locale]}</p>
             <p className="mt-2 text-muted">{profile.valueProposition[locale]}</p>
             <p className="mt-3 inline-flex items-center gap-2 rounded-full border border-success/30 bg-success-bg px-3 py-1 text-xs font-medium text-success">
@@ -77,8 +81,8 @@ export default async function RecruiterPage({ params }: Props) {
           </div>
         </header>
 
-        <div className="grid gap-8 pt-6 sm:grid-cols-[1.35fr_1fr]">
-          <div className="flex flex-col gap-6">
+        <div className="grid gap-8 pt-6 sm:grid-cols-[1.35fr_1fr] print:pt-4">
+          <div className="flex flex-col gap-6 print:gap-4">
             <Block title={t("profile")}>
               <ul className="space-y-1.5">
                 {profile.tldr.map((l) => (
@@ -102,9 +106,32 @@ export default async function RecruiterPage({ params }: Props) {
                       <span className="font-mono text-xs text-subtle">{formatPeriod(e.start, e.end, locale)}</span>
                     </p>
                     <p className="text-muted">{e.role[locale]}</p>
-                    <p className="mt-1 text-sm">{e.bullets[0][locale]}</p>
+                    <p className="mt-1 text-sm print:text-[9.6pt]">{e.bullets[0][locale]}</p>
                   </li>
                 ))}
+              </ul>
+            </Block>
+
+            <Block title={t("distinctions")}>
+              <ul className="space-y-1.5">
+                {competitions.map((a) => (
+                  <li key={a.id}>
+                    <span className="font-semibold">{a.name}</span> — {a.headline[locale]}
+                    <span className="text-muted"> · {a.context[locale]}</span>
+                  </li>
+                ))}
+                {hackathons.length ? (
+                  <li>
+                    <span className="font-semibold">{t("hackathons")}</span> —{" "}
+                    {hackathons.map((a) => `${a.name} (${a.headline[locale]})`).join(" · ")}
+                  </li>
+                ) : null}
+                {leadership.length ? (
+                  <li>
+                    <span className="font-semibold">{t("leadership")}</span> —{" "}
+                    {leadership.map((a) => `${a.name} (${a.role[locale]})`).join(" · ")}
+                  </li>
+                ) : null}
               </ul>
             </Block>
 
@@ -113,8 +140,8 @@ export default async function RecruiterPage({ params }: Props) {
                 {topProjects.map((p) => (
                   <li key={p.slug}>
                     <p className="font-semibold">{p.title[locale]}</p>
-                    <p className="text-sm text-muted">{p.subtitle[locale]}</p>
-                    <p className="mt-0.5 font-mono text-[0.7rem] text-subtle">
+                    <p className="text-sm text-muted print:text-[9.6pt]">{p.subtitle[locale]}</p>
+                    <p className="mt-0.5 font-mono text-[0.7rem] text-subtle print:hidden">
                       {[...p.skills.map((s) => getSkill(s).name), ...(p.extraStack ?? [])].slice(0, 6).join(" · ")}
                     </p>
                   </li>
@@ -123,9 +150,9 @@ export default async function RecruiterPage({ params }: Props) {
             </Block>
           </div>
 
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6 print:gap-4">
             <Block title={t("contact")}>
-              <ul className="space-y-1.5 text-sm">
+              <ul className="space-y-1.5 text-sm print:text-[9pt]">
                 <li className="flex items-center gap-2">
                   <Mail className="size-3.5 text-accent-fg" aria-hidden />
                   <a href={`mailto:${profile.email}`}>{profile.email}</a>
@@ -154,7 +181,7 @@ export default async function RecruiterPage({ params }: Props) {
             </Block>
 
             <Block title={t("topSkills")}>
-              <dl className="space-y-2 text-sm">
+              <dl className="space-y-2 text-sm print:space-y-1.5 print:text-[9pt]">
                 {TOP_CATEGORIES.map((id) => (
                   <div key={id}>
                     <dt className="font-semibold">{skillCategories.find((c) => c.id === id)?.label[locale]}</dt>
@@ -170,7 +197,7 @@ export default async function RecruiterPage({ params }: Props) {
             </Block>
 
             <Block title={t("education")}>
-              <ul className="space-y-2 text-sm">
+              <ul className="space-y-2 text-sm print:text-[9pt]">
                 {education
                   .filter((e) => e.isDegree)
                   .map((e) => (
@@ -185,10 +212,10 @@ export default async function RecruiterPage({ params }: Props) {
             </Block>
 
             <Block title={t("languages")}>
-              <p className="text-sm">
+              <p className="text-sm print:text-[9pt]">
                 {languages.map((l) => `${l.name[locale]} (${l.cefr ?? l.level[locale]})`).join(" · ")}
               </p>
-              <p className="mt-2 text-sm text-muted">{certifications.map((c) => `${c.issuer} ${c.title[locale]}`).join(" · ")}</p>
+              <p className="mt-2 text-sm text-muted print:text-[9pt]">{certifications.map((c) => `${c.issuer} ${c.title[locale]}`).join(" · ")}</p>
             </Block>
           </div>
         </div>

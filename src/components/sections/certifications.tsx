@@ -1,4 +1,4 @@
-import { BadgeCheck, Languages, Trophy } from "lucide-react";
+import { BadgeCheck, Languages } from "lucide-react";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Badge } from "@/components/ui/badge";
 import { BrandLogo } from "@/components/ui/brand-logo";
@@ -12,27 +12,20 @@ export async function Certifications() {
   const locale = await getLocale();
 
   return (
-    <Section id="certifications" eyebrow={t("eyebrow")} title={t("title")}>
-      <RevealGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+    <Section id="certifications" eyebrow={t("eyebrow")} title={t("title")} scene="certifications">
+      <RevealGroup className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {certifications.map((c) => (
           <RevealItem key={c.id} className="spotlight group flex flex-col rounded-3xl border border-border bg-surface p-6 shadow-card">
             <span className="grid size-12 place-items-center rounded-2xl border border-border bg-surface-2 text-fg transition-transform duration-500 ease-out-expo group-hover:scale-105">
               <BrandLogo logo={c.logo} className="size-6 text-[0.62rem]" title={c.issuer} />
             </span>
             <p className="mt-5 font-mono text-xs tracking-wider text-subtle uppercase">{c.issuer}</p>
-            <h3 className="mt-1.5 font-display text-lg leading-snug font-semibold">{c.title[locale]}</h3>
+            <h3 className="mt-1.5 font-display text-2xl leading-[1.05] font-extrabold uppercase">{c.title[locale]}</h3>
             <div className="mt-auto flex items-center justify-between gap-2 pt-5">
-              {c.kind === "competition" ? (
-                <Badge variant="warning">
-                  <Trophy className="size-3" aria-hidden />
-                  {t("competition")}
-                </Badge>
-              ) : (
-                <Badge>
-                  <BadgeCheck className="size-3" aria-hidden />
-                  {t("certification")}
-                </Badge>
-              )}
+              <Badge>
+                <BadgeCheck className="size-3" aria-hidden />
+                {t("certification")}
+              </Badge>
               {c.credentialUrl ? (
                 <ExternalLink href={c.credentialUrl} className="text-sm text-accent-fg underline-offset-4 hover:underline">
                   {t("verify")}
@@ -51,7 +44,7 @@ export async function Certifications() {
         <ul className="grid gap-4 sm:grid-cols-3">
           {languages.map((l) => (
             <li key={l.name.fr} className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-surface px-5 py-4">
-              <span className="font-display text-lg font-semibold">{l.name[locale]}</span>
+              <span className="font-display text-2xl leading-none font-extrabold uppercase">{l.name[locale]}</span>
               <span className="flex items-center gap-2 text-sm text-muted">
                 {l.level[locale]}
                 {l.cefr ? <Badge variant="accent">{l.cefr}</Badge> : null}
