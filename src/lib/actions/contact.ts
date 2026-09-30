@@ -32,7 +32,7 @@ export async function sendContact(input: ContactInput): Promise<ContactResult> {
     const resend = new Resend(apiKey);
     const { error } = await resend.emails.send({
       from: process.env.CONTACT_FROM_EMAIL ?? "Portfolio <onboarding@resend.dev>",
-      to: process.env.CONTACT_TO_EMAIL ?? profile.email,
+      to: process.env.CONTACT_TO_EMAIL ?? process.env.CONTACT_PAR_EMAIL ?? profile.email,
       replyTo: data.email,
       subject: `[${TYPE_LABEL[data.type]}] ${data.name}${data.company ? ` — ${data.company}` : ""}`,
       text: [
