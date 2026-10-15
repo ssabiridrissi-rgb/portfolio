@@ -49,19 +49,11 @@ export const profile: Profile = {
   drivingLicense: { fr: "Permis B", en: "Driving licence (B)" },
   cvs: [
     {
-      href: "/cv/Saad_Sabir_Idrissi_CV_Data_BI.pdf",
-      label: { fr: "CV Data & BI", en: "Data & BI résumé" },
+      href: "/cv/Saad_Sabir_Idrissi_CV.pdf",
+      label: { fr: "CV 2026", en: "2026 résumé" },
       description: {
-        fr: "Data warehouses, ETL, Power BI, Spotfire",
-        en: "Data warehouses, ETL, Power BI, Spotfire",
-      },
-    },
-    {
-      href: "/cv/Saad_Sabir_Idrissi_CV_IA.pdf",
-      label: { fr: "CV IA & Aide à la décision", en: "AI & Decision support résumé" },
-      description: {
-        fr: "IA explicable, recommandation, ML",
-        en: "Explainable AI, recommendation, ML",
+        fr: "Version à jour",
+        en: "Latest version",
       },
     },
   ],
