@@ -49,7 +49,7 @@ export const profile: Profile = {
   drivingLicense: { fr: "Permis B", en: "Driving licence (B)" },
   cvs: [
     {
-      href: "/cv/Saad_Sabir_Idrissi_CV.pdf",
+      href: "/cv/Saad_Sabir_CV.pdf",
       label: { fr: "CV 2026", en: "2026 résumé" },
       description: {
         fr: "Version à jour",
