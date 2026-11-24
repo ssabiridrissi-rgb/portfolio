@@ -166,7 +166,7 @@ export const projects: Project[] = [
         en: "Workflow & Release Manager: set up the Git flow, reviewed and merged pull requests, shipped the hotfix and the v1.0 release.",
       },
     },
-    links: { github: `${GH}/gestion-location-voitures` },
+    links: { github: `${GH}/autoloc-ai-car-rental` },
     diagram: "autoloc",
     caseStudy: {
       context: {
@@ -348,7 +348,7 @@ export const projects: Project[] = [
     skills: ["aws", "docker", "docker-compose", "linux", "zabbix"],
     extraStack: ["MySQL 8", "Ubuntu 22.04", "Windows Server 2022"],
     links: {
-      github: `${GH}/Mise-en-uvre-d-une-infrastructure-cloud-de-supervision-centralis-e-sous-AWS-`,
+      github: `${GH}/aws-zabbix-monitoring`,
     },
     diagram: "aws-zabbix",
     caseStudy: {
@@ -606,7 +606,7 @@ export const projects: Project[] = [
     highlights: [],
     skills: ["java", "spring-boot", "angular"],
     extraStack: ["Spring Data JPA", "H2", "Bootstrap"],
-    links: { github: `${GH}/exam-final-java` },
+    links: { github: `${GH}/digital-banking-spring-angular` },
   },
   {
     slug: "foodie-app-flutter",
@@ -624,7 +624,7 @@ export const projects: Project[] = [
     highlights: [],
     skills: ["flutter"],
     extraStack: ["Provider", "REST API"],
-    links: { github: `${GH}/application_mobile` },
+    links: { github: `${GH}/foodie-app-flutter` },
   },
   {
     slug: "products-angular-spring",
@@ -642,7 +642,7 @@ export const projects: Project[] = [
     highlights: [],
     skills: ["angular", "java", "spring-boot"],
     extraStack: ["Spring Data JPA", "H2"],
-    links: { github: `${GH}/angular-app` },
+    links: { github: `${GH}/products-angular-spring` },
   },
   {
     slug: "fondamentaux-java-spring",
@@ -664,7 +664,7 @@ export const projects: Project[] = [
     repos: [
       {
         name: "TP_SPRING_MVC_Thymleaf1-master",
-        href: `${GH}/TP_SPRING_MVC_Thymleaf1-master`,
+        href: `${GH}/spring-mvc-thymeleaf-security`,
         summary: {
           fr: "Spring MVC + Thymeleaf sécurisé par Spring Security (rôles USER/ADMIN, validation).",
           en: "Spring MVC + Thymeleaf secured with Spring Security (USER/ADMIN roles, validation).",
@@ -672,7 +672,7 @@ export const projects: Project[] = [
       },
       {
         name: "hospital",
-        href: `${GH}/hospital`,
+        href: `${GH}/hospital-spring-jpa`,
         summary: {
           fr: "Modélisation JPA d'un domaine hospitalier (patients, médecins, rendez-vous, consultations).",
           en: "JPA model of a hospital domain (patients, doctors, appointments, consultations).",
@@ -680,7 +680,7 @@ export const projects: Project[] = [
       },
       {
         name: "product-spring",
-        href: `${GH}/product-spring`,
+        href: `${GH}/products-spring-data-jpa`,
         summary: {
           fr: "Introduction à Spring Data JPA : entité, repository et service REST.",
           en: "Intro to Spring Data JPA: entity, repository and REST service.",
@@ -688,7 +688,7 @@ export const projects: Project[] = [
       },
       {
         name: "ioc-dep",
-        href: `${GH}/ioc-dep`,
+        href: `${GH}/java-dependency-injection`,
         summary: {
           fr: "Inversion de contrôle en Java : injection statique puis dynamique par réflexion.",
           en: "Inversion of control in Java: static wiring, then dynamic wiring through reflection.",
