@@ -663,7 +663,7 @@ export const projects: Project[] = [
     links: {},
     repos: [
       {
-        name: "TP_SPRING_MVC_Thymleaf1-master",
+        name: "spring-mvc-thymeleaf-security",
         href: `${GH}/spring-mvc-thymeleaf-security`,
         summary: {
           fr: "Spring MVC + Thymeleaf sécurisé par Spring Security (rôles USER/ADMIN, validation).",
@@ -671,7 +671,7 @@ export const projects: Project[] = [
         },
       },
       {
-        name: "hospital",
+        name: "hospital-spring-jpa",
         href: `${GH}/hospital-spring-jpa`,
         summary: {
           fr: "Modélisation JPA d'un domaine hospitalier (patients, médecins, rendez-vous, consultations).",
@@ -679,15 +679,15 @@ export const projects: Project[] = [
         },
       },
       {
-        name: "product-spring",
+        name: "products-spring-data-jpa",
         href: `${GH}/products-spring-data-jpa`,
         summary: {
-          fr: "Introduction à Spring Data JPA : entité, repository et service REST.",
-          en: "Intro to Spring Data JPA: entity, repository and REST service.",
+          fr: "Introduction à Spring Data JPA : entité, repository, opérations CRUD et requêtes dérivées.",
+          en: "Intro to Spring Data JPA: entity, repository, CRUD operations and derived queries.",
         },
       },
       {
-        name: "ioc-dep",
+        name: "java-dependency-injection",
         href: `${GH}/java-dependency-injection`,
         summary: {
           fr: "Inversion de contrôle en Java : injection statique puis dynamique par réflexion.",
