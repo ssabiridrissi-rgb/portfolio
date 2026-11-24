@@ -2,7 +2,7 @@
 
 Portfolio de **Saad Sabir Idrissi**, élève ingénieur en informatique spécialisé **Data & Intelligence Artificielle** (double diplôme Maroc / Chine), à la recherche d'un stage de fin d'études (PFE).
 
-🔗 **En ligne :** https://saad-sabir-idrissi.vercel.app *(après déploiement)*
+🔗 **En ligne :** https://saad-sabir-idrissi.vercel.app
 
 <!-- Captures : ajouter ici docs/screenshots/*.png -->
 
